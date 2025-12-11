@@ -1,7 +1,7 @@
 import {
 	defineConfig,
 	presetIcons,
-	presetMini,
+	presetWind4,
 	transformerVariantGroup,
 	presetWebFonts,
 	transformerCompileClass,
