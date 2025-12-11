@@ -1,0 +1,6 @@
+[tools]
+gitleaks = "latest"
+podman = "latest"
+
+[tasks.docker]
+run = "podman run --pull=always -it --rm --entrypoint bash jdxcode/mise:latest"

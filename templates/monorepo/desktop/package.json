@@ -1,0 +1,12 @@
+{
+    "name": "desktop",
+    "scripts": {
+        "dev": "bun run dev",
+        "build": "bun run build",
+        "lint": "biome lint --write",
+        "format": "biome run --write"
+    },
+    "devDependencies": {
+        "tauri": "^0.15.0"
+    }
+}

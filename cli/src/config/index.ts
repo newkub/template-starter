@@ -1,0 +1,1 @@
+export { cliConfig } from './cli.config'
