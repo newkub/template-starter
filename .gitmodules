@@ -1,3 +1,0 @@
-[submodule "templates/my-config"]
-	path = templates/my-config
-	url = https://github.com/newkub/my-config
