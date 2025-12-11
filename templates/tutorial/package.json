@@ -1,0 +1,31 @@
+{
+  "name": "tutorial",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "astro": "astro",
+    "build": "astro check && astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev",
+    "postbuild": "cp _headers ./dist/"
+  },
+  "dependencies": {
+    "@tutorialkit/react": "1.5.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.5",
+    "@astrojs/react": "4.3.0",
+    "@tutorialkit/astro": "1.5.2",
+    "@tutorialkit/theme": "1.5.2",
+    "@tutorialkit/types": "1.5.2",
+    "@types/node": "24.0.12",
+    "@types/react": "19.1.8",
+    "astro": "5.11.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
+  }
+}

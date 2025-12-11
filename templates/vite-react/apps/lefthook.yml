@@ -1,0 +1,9 @@
+pre-commit:
+  jobs:
+    - run: bun format
+      glob: "*.{js,ts,jsx,tsx}"
+
+pre-push:
+  jobs:
+    - run: bun lint
+      glob: "*.{js,ts,jsx,tsx}"
