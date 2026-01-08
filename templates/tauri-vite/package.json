@@ -1,0 +1,40 @@
+{
+  "name": "tauri-vite",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3",
+    "vue-tsc": "^2.1.10",
+    "@tauri-apps/cli": "^2",
+    "unocss": "^66.5.6",
+    "vite-plugin-checker": "^0.10.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-replace": "^0.3.1",
+    "unplugin-unused": "^0.4.0",
+    "unplugin-turbo-console": "^2.0.1",
+    "vite-plugin-terminal": "^1.6.0",
+    "vite-bundle-analyzer": "^0.12.0",
+    "vite-plugin-inspect": "^0.10.6",
+    "unplugin-ast": "^0.16.2",
+    "unplugin-macros": "^3.13.5",
+    "unplugin-isolated-decl": "^0.7.0",
+    "unplugin-icons": "^22.0.0",
+    "@iconify-json/mdi": "^1.2.3",
+    "@biomejs/biome": "^2.3.5"
+  }
+}

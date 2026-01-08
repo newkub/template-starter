@@ -1,0 +1,19 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: install
+      run: bun install
+    - name: format
+      run: bun format
+    - name: gitleaks
+      run: gitleaks protect --verbose
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: lint
+      run: bun lint
+    - name: security-audit
+      run: bun audit
+    - name: check-outdated
+      run: bun outdated

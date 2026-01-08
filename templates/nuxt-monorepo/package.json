@@ -1,0 +1,23 @@
+{
+  "name": "nuxt-monorepo",
+  "private": true,
+  "packageManager": "bun@1.3.2",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && bunx rimraf node_modules",
+    "ci": "turbo run build lint test",
+    "format": "turbo run format",
+    "update:deps": "bunx taze -r -w"
+  },
+  "devDependencies": {
+    "turbo": "^2.6.1"
+  }
+}
