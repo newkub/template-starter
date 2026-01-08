@@ -1,124 +1,27 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "globalDependencies": [
-    "**/.env.*local",
-    "**/nuxt.config.*",
-    "**/app.config.*",
-    "**/tailwind.config.*",
-    "**/uno.config.*"
-  ],
+  "ui": "stream",
+  "globalDependencies": [],
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [
-        ".nuxt/**",
-        ".output/**",
-        "dist/**",
-        ".nitro/**"
-      ]
-    },
-    "dev": {
+     "dev": {
       "cache": false,
       "persistent": true
     },
-    "generate": {
-      "dependsOn": ["^build"],
-      "outputs": [
-        ".output/**",
-        "dist/**"
-      ]
-    },
-    "preview": {
-      "dependsOn": ["build"],
-      "cache": false
-    },
-    "start": {
-      "dependsOn": ["build"],
-      "cache": false
-    },
-    "typecheck": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "lint": {
-      "dependsOn": ["^build"],
-      "outputs": []
+     "build": {
+      "dependsOn": ["^lint"]
     },
     "format": {
-      "outputs": []
+      "dependsOn": []
+    },
+    "lint": {
+      "cache": true
     },
     "test": {
-      "dependsOn": ["^build"],
-      "outputs": []
+      "dependsOn": ["^lint", "^build" ]
     },
-    "db:generate": {
-      "dependsOn": [],
-      "outputs": []
-    },
-    "container:build": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "container:run": {
-      "dependsOn": ["container:build"],
-      "cache": false,
-      "persistent": true
-    },
-    "apps:build": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "apps:dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "apps:start": {
-      "dependsOn": ["apps:build"],
-      "cache": false
-    },
-    "analyze": {
-      "dependsOn": ["build"],
-      "outputs": []
-    },
-    "cleanup": {
-      "outputs": []
-    },
-    "module:build": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "storybook": {
-      "cache": false,
-      "persistent": true
-    },
-    "storybook:build": {
-      "dependsOn": ["^build"],
-      "outputs": [
-        ".nuxt-storybook/**",
-        "storybook-static/**"
-      ]
-    },
-    "storybook:start": {
-      "dependsOn": ["storybook:build"],
-      "cache": false
-    },
-    "upgrade": {
-      "outputs": []
-    },
-    "devtool": {
-      "cache": false,
-      "persistent": true
-    },
-    "info": {
-      "outputs": []
-    },
-    "prepare": {
-      "outputs": []
-    },
-    "deploy": {
-      "dependsOn": ["build"],
-      "outputs": []
+    "review": {},
+     "preview": {
+      "dependsOn": ["^build"]
     }
   }
 }
