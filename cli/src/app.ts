@@ -5,30 +5,8 @@ import { SubmoduleService } from './services/submodule.service'
 import { PromptService } from './services/prompt.service'
 import { formatUseSuccessMessage, formatUpdateSuccessMessage, formatNavigationInstructions } from './components/index'
 import { copyDir, updateProjectPackageJson } from './utils/file-utils'
+import { openUrl } from './utils/url-utils'
 import type { TemplateName } from './types/template'
-
-/**
- * Custom function to open URLs using Bun
- */
-async function openUrl(url: string): Promise<void> {
-  try {
-    // Try different commands based on the platform
-    if (process.platform === 'win32') {
-      // Windows - use cmd /c start to properly open URLs
-      await Bun.$`cmd /c start ${url}`.quiet()
-    } else if (process.platform === 'darwin') {
-      // macOS
-      await Bun.$`open "${url}"`.quiet()
-    } else {
-      // Linux and others
-      await Bun.$`xdg-open "${url}"`.quiet()
-    }
-  } catch (error) {
-    PromptService.log.warn(`Could not open URL automatically. Please visit: ${url}`)
-    // Log the error for debugging purposes
-    console.debug('Error opening URL:', error)
-  }
-}
 
 /**
  * Main application function that handles the CLI logic

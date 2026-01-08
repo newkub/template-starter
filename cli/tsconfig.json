@@ -9,7 +9,6 @@
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "outDir": "./dist",
-    "rootDir": "./src",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "types": [
@@ -22,7 +21,9 @@
     "verbatimModuleSyntax": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "vitest.config.ts"
   ],
   "exclude": [
     "node_modules",
