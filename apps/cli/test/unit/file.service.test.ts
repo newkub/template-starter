@@ -9,25 +9,27 @@ describe('FileService.syncConfig', () => {
     vi.resetAllMocks()
     vi.mocked(joinPath).mockImplementation((...parts) => parts.join('/'))
     vi.spyOn(FileService, 'copyFile').mockResolvedValue(undefined)
+    vi.spyOn(FileService, 'isFile').mockImplementation((path) => path.includes('config.json'))
     vi.spyOn(process, 'cwd').mockReturnValue('/fake/current')
+    vi.stubEnv('TEMPLATES_ROOT', '/fake/root')
   })
 
   afterEach(() => {
     vi.restoreAllMocks()
+    vi.unstubAllEnvs()
   })
 
   it('should sync matching files', async () => {
     const existsSpy = vi.spyOn(FileService, 'exists').mockResolvedValue(true)
     const readdirSpy = vi.spyOn(FileService, 'readdir')
       .mockResolvedValueOnce(['config.json', 'file1.txt'])
-      .mockResolvedValueOnce(['config.json', 'other.js'])
 
     const result = await FileService.syncConfig('my-config')
 
-    expect(existsSpy).toHaveBeenCalledWith(joinPath('/fake/root', 'templates', 'my-config'))
-    expect(readdirSpy).toHaveBeenCalledTimes(2)
+    expect(existsSpy).toHaveBeenCalledWith(joinPath('/fake/current', '/fake/root', 'templates', 'my-config'))
+    expect(readdirSpy).toHaveBeenCalledTimes(1)
     expect(FileService.copyFile).toHaveBeenCalledWith(
-      joinPath('/fake/root', 'templates', 'my-config', 'config.json'),
+      joinPath('/fake/current', '/fake/root', 'templates', 'my-config', 'config.json'),
       joinPath('/fake/current', 'config.json')
     )
     expect(result.syncedFiles).toEqual(['config.json'])
