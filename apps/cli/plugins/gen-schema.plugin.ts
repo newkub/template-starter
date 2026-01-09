@@ -1,6 +1,6 @@
 import type { Plugin } from 'tsdown'
 import { zodToJsonSchema } from 'zod-to-json-schema'
-import { UserConfigSchema } from '../src/schemas/config.schema.ts'
+import { UserConfigSchema } from '../src/types/config.schema.ts'
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 
