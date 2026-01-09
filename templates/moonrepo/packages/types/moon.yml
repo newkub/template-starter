@@ -1,0 +1,15 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+language: 'typescript'
+
+tasks:
+  build:
+    command: 'bun run build'
+  test:
+    command: 'bun test'
+  lint:
+    command: 'oxlint --fix'
+  format:
+    command: 'dprint fmt'
+  clean:
+    command: 'bun run clean'

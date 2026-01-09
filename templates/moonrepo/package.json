@@ -1,0 +1,32 @@
+{
+  "name": "moonrepo-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "bun@1.3.5",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "watch": "moon run watch",
+    "prepare": "bunx lefthook install",
+    "dev": "moon run dev",
+    "build": "moon run build",
+    "test": "moon run test",
+    "verify": "bun run lint && bun run test && bun run build",
+    "lint": "moon run lint",
+    "lint:direct": "oxlint --fix",
+    "format": "moon run format",
+    "format:direct": "dprint fmt",
+    "clean": "moon run clean && bunx rimraf node_modules"
+  },
+  "devDependencies": {
+    "@moonrepo/cli": "^1.41.7",
+    "dprint": "^0.51.1",
+    "lefthook": "^2.0.13",
+    "oxlint": "^1.38.0",
+    "oxlint-tsgolint": "^0.10.1",
+    "rimraf": "^6.1.2"
+  }
+}

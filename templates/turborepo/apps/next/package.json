@@ -1,0 +1,34 @@
+{
+  "name": "@workspace/next",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "preview": "next build && next start",
+    "format": "dprint fmt",
+    "lint": "oxlint --fix --type-aware",
+    "test": "vitest --run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@vueuse/core": "^12.5.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.2",
+    "typescript": "^5.7.3",
+    "tailwindcss": "^4.0.6",
+    "postcss": "^8.4.49",
+    "autoprefixer": "^10.4.20"
+  }
+}

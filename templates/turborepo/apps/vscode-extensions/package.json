@@ -1,0 +1,47 @@
+{
+  "name": "@workspace/vscode-extensions",
+  "displayName": "VSCode Extension",
+  "description": "My awesome VSCode extension",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "watch": "bun --watch verify",
+    "dev": "bun run src/extension.ts",
+    "format": "dprint fmt",
+    "lint": "oxlint --fix --type-aware",
+    "build": "tsc",
+    "test": "vitest --run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "verify": "bun run format && bun audit && bun run lint && bun run test && bun run build && bun run dev",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "reactive-vscode": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.97.0",
+    "typescript": "^5.7.3",
+    "@vscode/vsce": "^3.2.2"
+  }
+}

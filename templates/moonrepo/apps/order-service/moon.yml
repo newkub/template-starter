@@ -1,0 +1,27 @@
+$schema: "https://moonrepo.dev/schemas/project.json"
+
+language: "typescript"
+
+tasks:
+  dev:
+    command: "bun run src/index.ts"
+    local: true
+    options:
+      outputStyle: "stream"
+  build:
+    command: "bun run build"
+    deps: ["^:build"]
+  start:
+    command: "bun run dist/index.js"
+    deps: ["build"]
+  test:
+    command: "bun test"
+    deps: ["^:build"]
+  lint:
+    command: "oxlint --fix"
+  format:
+    command: "dprint fmt"
+  clean:
+    command: "bun run clean"
+  build:container:
+    command: "railpack build . --name order-service"

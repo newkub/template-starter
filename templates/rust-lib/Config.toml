@@ -1,0 +1,7 @@
+# Application Configuration
+
+[database]
+url = "postgres://user:pass@localhost/db"
+
+[api]
+port = 8080

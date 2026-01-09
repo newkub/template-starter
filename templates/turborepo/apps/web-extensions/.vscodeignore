@@ -1,0 +1,11 @@
+.vscode/**
+.vscode-test/**
+src/**
+*.ts
+*.map
+!src/entrypoints/**
+!src/components/**
+!src/assets/**
+tsconfig.json
+vite.config.ts
+wxt.config.ts

@@ -1,0 +1,31 @@
+[package]
+name = "rust-package"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT OR Apache-2.0"
+description = "A Rust package template"
+repository = ""
+keywords = []
+categories = []
+
+[lib]
+name = "rust_package"
+path = "src/lib.rs"
+
+[dependencies]
+thiserror = "2.0.17"
+anyhow = "1.0.100"
+tokio = { version = "1.49.0", features = ["full"] }
+figment = { version = "0.10.19", features = ["env", "toml"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
+serde = { version = "1.0.228", features = ["derive"] }
+
+[dev-dependencies]
+criterion = "0.8.1"
+mockall = "0.14.0"
+
+[[bench]]
+name = "benchmark"
+harness = false

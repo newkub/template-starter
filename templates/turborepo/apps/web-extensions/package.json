@@ -1,0 +1,31 @@
+{
+  "name": "@workspace/web-extensions",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "build:firefox": "wxt build --browser firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip --browser firefox",
+    "compile": "wxt compile",
+    "format": "dprint fmt",
+    "lint": "oxlint --fix --type-aware",
+    "test": "vitest --run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "verify": "bun run format && bun run lint && bun run test && bun run build",
+    "package": "wxt zip",
+    "publish": "wxt publish"
+  },
+  "dependencies": {
+    "reactive-vscode": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.315",
+    "@types/firefox-webext-browser": "^130.0.4",
+    "typescript": "^5.7.3",
+    "wxt": "^0.22.2"
+  }
+}
