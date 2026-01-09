@@ -5,15 +5,18 @@ pre-commit:
     - name: format
       run: bun run format
 
-pre-push:
-  jobs:
-    - name: build
-      run: bun run build
 
 pre-rebase:
   jobs:
     - name: fetch-origin
       run: git fetch origin
+    - name: rebase-check
+      run: |
+        LOCAL=$(git rev-parse @)
+        REMOTE=$(git rev-parse @{u})
+        BASE=$(git merge-base @ @{u})
+        [ "$LOCAL" = "$REMOTE" ] && exit 0
+        [ "$LOCAL" = "$BASE" ] && { echo "Branch behind, pull/rebase first!"; exit 1; }
 
 post-receive:
   jobs:
