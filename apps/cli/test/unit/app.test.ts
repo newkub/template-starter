@@ -3,20 +3,18 @@ import { runApp } from '../../src/app'
 import { PromptService } from '../../src/services/prompt.service'
 import { ConfigLoader } from '../../src/services/config-loader.service'
 import { ConfigResolver } from '../../src/services/config-resolver.service'
-import { openUrl } from '../../src/utils/url-utils'
+import { openUrl } from '../../src/services/url.service'
 import { FileService } from '../../src/services/file.service'
 import { SubmoduleService } from '../../src/services/submodule.service'
-import * as fileUtils from '../../src/utils/file-utils'
-import { pathUtils } from '../../src/utils/path-utils'
+import { joinPath, resolveFromCwd } from '../../src/utils/path-utils'
 
 // Mock all dependencies for testing runApp logic in isolation
 vi.mock('../../src/services/prompt.service')
 vi.mock('../../src/services/config-loader.service')
 vi.mock('../../src/services/config-resolver.service')
-vi.mock('../../src/utils/url-utils')
+vi.mock('../../src/services/url.service')
 vi.mock('../../src/services/file.service')
 vi.mock('../../src/services/submodule.service')
-vi.mock('../../src/utils/file-utils')
 vi.mock('../../src/utils/path-utils')
 vi.mock('../../src/config/cli.config', () => ({
   cliConfig: {
@@ -36,9 +34,9 @@ describe('runApp', () => {
   beforeEach(() => {
     vi.resetAllMocks()
     vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
-    // Mock pathUtils methods instead of FileService.getRootDir
-    vi.mocked(pathUtils.resolveFromRoot).mockReturnValue('D:/templates')
-    vi.mocked(pathUtils.resolveFromCwd).mockImplementation((...parts) => parts.join('/'))
+    // Mock path utils
+    vi.mocked(joinPath).mockImplementation((...parts) => parts.join('/'))
+    vi.mocked(resolveFromCwd).mockImplementation((...parts) => parts.join('/'))
     // Mock config loading
     vi.mocked(ConfigLoader.loadUserConfig).mockResolvedValue(null)
     vi.mocked(ConfigResolver.resolve).mockReturnValue({
@@ -82,7 +80,7 @@ describe('runApp', () => {
     // Mock exists for createTemplate: first for source, second for target
     vi.mocked(FileService.exists).mockResolvedValueOnce(true).mockResolvedValueOnce(false)
     await runApp()
-    expect(fileUtils.copyDir).toHaveBeenCalled()
+    expect(FileService.copyDir).toHaveBeenCalled()
     expect(PromptService.log.success).toHaveBeenCalledWith(expect.stringContaining('Successfully created project'))
   })
 
@@ -111,7 +109,7 @@ describe('runApp', () => {
 
     await runApp()
 
-    expect(fileUtils.copyDir).toHaveBeenCalled()
+    expect(FileService.copyDir).toHaveBeenCalled()
     expect(PromptService.log.success).toHaveBeenCalledWith(expect.stringContaining('Successfully updated template'))
   })
 

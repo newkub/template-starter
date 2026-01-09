@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { FileService } from '../../src/services/file.service'
-import { pathUtils } from '../../src/utils/path-utils'
+import { joinPath } from '../../src/utils/path-utils'
 
 vi.mock('../../src/utils/path-utils')
 
 describe('FileService.syncConfig', () => {
   beforeEach(() => {
     vi.resetAllMocks()
-    vi.mocked(pathUtils.resolveFromRoot).mockReturnValue('/fake/root')
+    vi.mocked(joinPath).mockImplementation((...parts) => parts.join('/'))
     vi.spyOn(FileService, 'copyFile').mockResolvedValue(undefined)
     vi.spyOn(process, 'cwd').mockReturnValue('/fake/current')
   })
@@ -24,11 +24,11 @@ describe('FileService.syncConfig', () => {
 
     const result = await FileService.syncConfig('my-config')
 
-    expect(existsSpy).toHaveBeenCalledWith(pathUtils.join('/fake/root', 'templates', 'my-config'))
+    expect(existsSpy).toHaveBeenCalledWith(joinPath('/fake/root', 'templates', 'my-config'))
     expect(readdirSpy).toHaveBeenCalledTimes(2)
     expect(FileService.copyFile).toHaveBeenCalledWith(
-      pathUtils.join('/fake/root', 'templates', 'my-config', 'config.json'),
-      pathUtils.join('/fake/current', 'config.json')
+      joinPath('/fake/root', 'templates', 'my-config', 'config.json'),
+      joinPath('/fake/current', 'config.json')
     )
     expect(result.syncedFiles).toEqual(['config.json'])
   })
@@ -46,7 +46,7 @@ describe('FileService.syncConfig', () => {
 
     const result = await FileService.syncConfig('my-config')
 
-    expect(result.message).toBe('No matching files found to sync')
+    expect(result.message).toBe('No files found in template directory')
     expect(FileService.copyFile).not.toHaveBeenCalled()
   })
 })

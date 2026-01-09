@@ -5,6 +5,7 @@ export type TemplateName =
   | 'nuxt'
   | 'slidev'
   | 'tutorial'
+  | 'turborepo'
   | 'vite-react'
   | 'vitepress'
   | 'vscode-vue'

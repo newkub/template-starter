@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import type { TemplateName } from './template'
-import { UserConfigSchema } from '../schemas/config.schema'
+import { UserConfigSchema } from './config.schema'
 
 export type UserConfig = z.infer<typeof UserConfigSchema>
 

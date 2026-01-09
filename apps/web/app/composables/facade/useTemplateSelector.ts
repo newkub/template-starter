@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import type { Ecosystem, LibraryCategory, TemplateConfig } from "~/shared/types/template";
-import { ecosystems, libraryCategories } from "~/shared/data/ecosystems";
+import { ecosystems, libraryCategories } from "../../../shared/data/ecosystems";
 
 export function useTemplateSelector() {
 	const selectedEcosystem = ref<Ecosystem>("bun");

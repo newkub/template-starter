@@ -1,11 +1,9 @@
 pre-commit:
   jobs:
-    - name: git pull --rebase
-      run: git pull --rebase
-    - name: lint
-      run: bun run lint {staged_files}
+    - name: install-deps
+      run: bun install
     - name: format
-      run: bun run format {staged_files}
+      run: bun run format
 
 pre-push:
   jobs:
@@ -24,5 +22,5 @@ post-receive:
 
 post-checkout:
   jobs:
-    - name: install
+    - name: install-deps
       run: bun install

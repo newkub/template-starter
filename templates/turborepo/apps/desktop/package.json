@@ -18,23 +18,24 @@
     "tauri:build": "tauri build"
   },
   "dependencies": {
-    "nuxt": "^4.0.0",
-    "@vue-macros/nuxt": "^0.18.1",
-    "@nuxtjs/color-mode": "^3.5.2",
-    "@vueuse/nuxt": "^12.5.0",
-    "@unocss/nuxt": "^65.4.3",
-    "@pinia/nuxt": "^0.10.0",
-    "nuxt-mcp-dev": "^0.0.11",
-    "@nuxt/icon": "^1.10.3",
-    "@scalar/nuxt": "^0.7.30",
-    "pinia": "^2.3.0",
-    "vue": "^3.5.13",
-    "@tauri-apps/api": "^2.2.0"
+    "nuxt": "^4.2.2",
+    "@vue-macros/nuxt": "^3.1.2",
+    "@nuxtjs/color-mode": "^4.0.0",
+    "@vueuse/nuxt": "^14.1.0",
+    "@unocss/nuxt": "^66.5.12",
+    "@pinia/nuxt": "^0.11.3",
+    "nuxt-mcp-dev": "^0.3.2",
+    "@nuxt/icon": "^2.2.0",
+    "@scalar/nuxt": "^0.5.40",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.26",
+    "@tauri-apps/api": "^2.9.1"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.12.2",
-    "vue-tsc": "^2.2.4",
-    "vite-plugin-checker": "^0.8.0",
-    "@tauri-apps/cli": "^2.2.7"
+    "vue-tsc": "^3.2.2",
+    "vite-plugin-checker": "^0.12.0",
+    "@tauri-apps/cli": "^2.9.6",
+    "vite-plugin-tauri": "^3.7.3",
+    "oxlint-tsgolint": "^0.10.1"
   }
 }

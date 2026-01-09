@@ -1,1 +1,0 @@
-export { TEMPLATE_MAP, FROZEN_TEMPLATE_MAP } from './template.const'

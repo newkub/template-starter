@@ -86,7 +86,7 @@ export const ecosystems: EcosystemConfig[] = [
 		id: "flutter",
 		name: "Flutter",
 		description: "Build beautiful apps",
-		icon: "mdi:flutter",
+		icon: "mdi:language-dart",
 		libraries: {
 			ui: [
 				{ id: "flutter-ui", name: "Material", description: "Material Design", icon: "mdi:palette" },

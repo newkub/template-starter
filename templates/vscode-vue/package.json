@@ -5,12 +5,13 @@
 	"type": "module",
 	"version": "0.0.1",
 	"private": true,
+	"packageManager": "bun@1.3.5",
 	"categories": [
 		"Other"
 	],
 	"main": "./dist/extension.cjs",
 	"engines": {
-		"vscode": "^1.106.0"
+		"vscode": "^1.107.0"
 	},
 	"activationEvents": [
 		"onStartupFinished"
@@ -34,14 +35,20 @@
 		}
 	},
 	"scripts": {
-		"build": "tsdown",
-		"dev": "bun run --watch ./src/index.ts",
+		"watch": "bun --watch ./src/extension.ts",
+		"dev": "bun run ./src/extension.ts",
+		"format": "dprint check",
 		"lint": "bunx tsc --noEmit",
+		"build": "tsdown",
+		"test": "bun test",
+		"verify": "bun run format && bun audit && bun run lint && bun run test && bun run build",
+		"package": "vsce package",
+		"publish": "vsce publish",
 		"vscode:prepublish": "bun run build"
 	},
 	"devDependencies": {
 		"@types/node": "18.x",
-		"@types/vscode": "^1.106.0",
+		"@types/vscode": "^1.107.0",
 		"reactive-vscode": "^0.2.22",
 		"tsdown": "^0.11.13",
 		"typescript": "^5.9.3"

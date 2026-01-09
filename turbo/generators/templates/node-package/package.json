@@ -29,8 +29,8 @@
 	"devDependencies": {
 		"@types/node": "^25.0.3",
 		"dprint": "^0.51.1",
-		"oxlint": "^1.35.0",
-		"tsdown": "^0.18.3",
+		"oxlint": "^1.38.0",
+		"tsdown": "^0.18.4",
 		"typescript": "^5.9.3",
 		"vitest": "^4.0.16"
 	},

@@ -15,9 +15,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "nuxt-mcp-dev",
     ["@nuxt/icon", {
-      serverBundle: {
-        collections: ['mdi']
-      }
+      serverBundle: false
     }],
     "@scalar/nuxt"
   ],
@@ -32,19 +30,7 @@ export default defineNuxtConfig({
 	},
 
   nitro: {
-    preset: "cloudflare_module",
-    cloudflare: {
-      deployConfig: true,
-      nodeCompat: true,
-      wrangler: {
-        routes: [
-          {
-            pattern: "*web.com",
-            custom_domain: true,
-          },
-        ]
-      }
-    },
+    preset: "node-server",
   },
 
   routeRules: {

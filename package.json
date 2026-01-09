@@ -7,11 +7,10 @@
   "globalConcurrency": 32,
   "workspaces": [
     "template/*",
-    "cli"
+    "apps/*"
   ],
   "scripts": {
     "watch": "turbo watch verify --ui=tui",
-    "preinstall": "bunx taze -r -w -i",
     "prepare": "bunx lefthook install",
     "dev": "turbo dev --ui=tui",
     "format": "turbo format",
@@ -24,6 +23,7 @@
     "devtools": "turbo devtools"
   },
   "devDependencies": {
-    "turbo": "^2.6.1"
+    "turbo": "^2.7.3",
+    "vite": "^7.3.1"
   }
 }

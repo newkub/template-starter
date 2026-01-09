@@ -36,7 +36,9 @@ src/
 ├── components/         # UI components (pure functions)
 ├── config/            # Application configuration
 ├── constant/          # Compile-time constants
+├── handlers/          # Command handlers
 ├── lib/               # External library wrappers
+├── schemas/           # Zod schemas for validation
 ├── services/          # Business logic and side effects
 ├── types/             # TypeScript type definitions
 └── utils/             # Pure utility functions
@@ -44,7 +46,8 @@ src/
 
 ### Key Components
 
-- **Services**: Handle business logic and side effects (file operations, prompts, git operations)
+- **Handlers**: Command-specific logic for each CLI command (use, list, update, sync, add, remove)
+- **Services**: Handle business logic and side effects (file operations, prompts, git operations, config management)
 - **Utils**: Pure functions for common operations (path handling, URL opening, file utilities)
 - **Config**: Centralized configuration including GitHub settings and template mappings
 - **Error Types**: Custom error classes for better error handling and debugging

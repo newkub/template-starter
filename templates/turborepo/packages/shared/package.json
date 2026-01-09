@@ -19,6 +19,7 @@
     "verify": "bun run format && bun run lint && bun run test && bun run build"
   },
   "devDependencies": {
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "oxlint-tsgolint": "^0.10.1"
   }
 }

@@ -17,7 +17,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.5",
+    "@astrojs/check": "^0.9.6",
     "@astrojs/react": "4.3.0",
     "@tutorialkit/astro": "1.5.2",
     "@tutorialkit/theme": "1.5.2",

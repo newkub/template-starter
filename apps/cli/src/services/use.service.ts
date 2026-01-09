@@ -26,7 +26,7 @@ export async function handleUseCommand(config: ResolvedConfig): Promise<void> {
 
 async function createTemplate(templateName: string, projectName: string): Promise<void> {
   const templateDir = templateName
-  const rootDir = process.env.TEMPLATES_ROOT ? joinPath(process.cwd(), process.env.TEMPLATES_ROOT) : joinPath(process.cwd(), '../../..')
+  const rootDir = process.env.TEMPLATES_ROOT ? joinPath(process.cwd(), process.env.TEMPLATES_ROOT) : joinPath(process.cwd(), '../..')
   const sourcePath = joinPath(rootDir, 'templates', templateDir)
   const targetPath = resolveFromCwd(projectName)
 

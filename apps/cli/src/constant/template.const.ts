@@ -8,6 +8,7 @@ export const TEMPLATE_MAP: TemplateMap = {
   'nuxt': 'nuxt',
   'slidev': 'slidev',
   'tutorial': 'tutorial',
+  'turborepo': 'turborepo',
   'vite-react': 'vite-react',
   'vitepress': 'vitepress',
   'vscode-vue': 'vscode-vue'

@@ -9,3 +9,7 @@
     </NuxtLayout>
   </div>
 </template>
+
+<style>
+@unocss/reset;
+</style>

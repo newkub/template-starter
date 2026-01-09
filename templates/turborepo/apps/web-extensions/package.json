@@ -24,8 +24,9 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.0.315",
-    "@types/firefox-webext-browser": "^130.0.4",
+    "@types/firefox-webext-browser": "^143.0.0",
     "typescript": "^5.7.3",
-    "wxt": "^0.22.2"
+    "wxt": "^0.20.13",
+    "oxlint-tsgolint": "^0.10.1"
   }
 }

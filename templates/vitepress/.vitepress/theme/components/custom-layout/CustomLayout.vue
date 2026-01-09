@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
-import ClerkProfile from "../ClerkProfile.vue";
+// import ClerkProfile from "../ClerkProfile.vue";
 import Profile from "../workos/Profile.vue";
 import CourseHeader from "./CourseHeader.vue";
 import LoginCheck from "./PopupLogin.vue";
@@ -19,11 +19,8 @@ const { Layout } = DefaultTheme;
         </template>
 
         <template #nav-bar-content-after>
-            <ClerkProfile />
-           
-            <!-- <Profile /> -->
-            
-            
+            <!-- <ClerkProfile /> -->
+            <Profile />
         </template>
 
         <!--
