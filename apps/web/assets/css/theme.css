@@ -1,0 +1,141 @@
+@unocss all;
+
+:root {
+  /* สีหลัก - มี DEFAULT, hover, active, foreground */
+  --color-primary: 221 83% 53%;
+  --color-primary-hover: 221 83% 45%;
+  --color-primary-active: 221 83% 37%;
+  --color-primary-foreground: 0 0% 100%;
+
+  --color-secondary: 238 84% 67%;
+  --color-secondary-hover: 238 84% 59%;
+  --color-secondary-active: 238 84% 51%;
+  --color-secondary-foreground: 0 0% 100%;
+
+  /* สีสถานะ - มี DEFAULT, foreground */
+  --color-success: 142 76% 36%;
+  --color-success-foreground: 0 0% 100%;
+
+  --color-warning: 38 92% 50%;
+  --color-warning-foreground: 0 0% 100%;
+
+  --color-danger: 0 84% 60%;
+  --color-danger-foreground: 0 0% 100%;
+
+  --color-info: 199 89% 48%;
+  --color-info-foreground: 0 0% 100%;
+
+  /* สี action - destructive */
+  --color-destructive: 0 84% 60%;
+  --color-destructive-hover: 0 84% 56%;
+  --color-destructive-active: 0 84% 52%;
+  --color-destructive-foreground: 0 0% 100%;
+
+  /* สีพื้นฐาน */
+  --color-background: 0 0% 100%;
+  --color-foreground: 220 13% 18%;
+
+  /* สี surface - card, modal, dropdown */
+  --color-surface: 0 0% 100%;
+  --color-surface-elevated: 0 0% 100%;
+  --color-surface-foreground: 220 13% 18%;
+
+  /* สี interaction */
+  --color-muted: 220 13% 96%;
+  --color-muted-foreground: 220 13% 42%;
+
+  --color-accent: 221 83% 53%;
+  --color-accent-hover: 221 83% 45%;
+  --color-accent-foreground: 0 0% 100%;
+
+  /* สีขอบและ focus */
+  --color-border: 220 13% 82%;
+  --color-border-hover: 220 13% 60%;
+  --color-ring: 221 83% 53%;
+  --color-focus: 221 83% 53%;
+
+  /* สี state - disabled */
+  --color-disabled: 220 13% 82%;
+  --color-disabled-foreground: 220 13% 42%;
+
+  /* สี overlay - modal backdrop */
+  --color-overlay: 0 0% 0%;
+
+  /* สี selection - UX detail */
+  --color-selection: 221 83% 53%;
+  --color-selection-foreground: 0 0% 100%;
+
+  /* สี skeleton - loading state */
+  --color-skeleton: 220 13% 82%;
+  --color-skeleton-shine: 220 13% 96%;
+}
+
+.dark {
+  /* สีหลัก */
+  --color-primary: 221 83% 63%;
+  --color-primary-hover: 221 83% 55%;
+  --color-primary-active: 221 83% 47%;
+  --color-primary-foreground: 0 0% 100%;
+
+  --color-secondary: 238 84% 77%;
+  --color-secondary-hover: 238 84% 69%;
+  --color-secondary-active: 238 84% 61%;
+  --color-secondary-foreground: 0 0% 100%;
+
+  /* สีสถานะ */
+  --color-success: 142 76% 46%;
+  --color-success-foreground: 0 0% 100%;
+
+  --color-warning: 38 92% 60%;
+  --color-warning-foreground: 0 0% 100%;
+
+  --color-danger: 0 84% 70%;
+  --color-danger-foreground: 0 0% 100%;
+
+  --color-info: 199 89% 58%;
+  --color-info-foreground: 0 0% 100%;
+
+  /* สี action - destructive */
+  --color-destructive: 0 84% 70%;
+  --color-destructive-hover: 0 84% 66%;
+  --color-destructive-active: 0 84% 62%;
+  --color-destructive-foreground: 0 0% 100%;
+
+  /* สีพื้นฐาน */
+  --color-background: 220 13% 7%;
+  --color-foreground: 220 13% 97%;
+
+  /* สี surface */
+  --color-surface: 220 13% 10%;
+  --color-surface-elevated: 220 13% 15%;
+  --color-surface-foreground: 220 13% 97%;
+
+  /* สี interaction */
+  --color-muted: 220 13% 22%;
+  --color-muted-foreground: 220 13% 60%;
+
+  --color-accent: 221 83% 63%;
+  --color-accent-hover: 221 83% 55%;
+  --color-accent-foreground: 0 0% 100%;
+
+  /* สีขอบและ focus */
+  --color-border: 220 13% 30%;
+  --color-border-hover: 220 13% 42%;
+  --color-ring: 221 83% 63%;
+  --color-focus: 221 83% 63%;
+
+  /* สี state - disabled */
+  --color-disabled: 220 13% 30%;
+  --color-disabled-foreground: 220 13% 60%;
+
+  /* สี overlay */
+  --color-overlay: 0 0% 0%;
+
+  /* สี selection - UX detail */
+  --color-selection: 221 83% 63%;
+  --color-selection-foreground: 0 0% 100%;
+
+  /* สี skeleton - loading state */
+  --color-skeleton: 220 13% 30%;
+  --color-skeleton-shine: 220 13% 22%;
+}

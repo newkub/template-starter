@@ -5,20 +5,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@vue-macros/nuxt",
-    ["@nuxtjs/color-mode", {
-      preference: "system",
-      fallback: "light",
-      classSuffix: "",
-    }],
+    "@nuxtjs/color-mode",
     "@vueuse/nuxt",
     "@unocss/nuxt",
     "@pinia/nuxt",
     "nuxt-mcp-dev",
-    ["@nuxt/icon", {
-      serverBundle: false
-    }],
-    "@scalar/nuxt"
+    "@nuxt/icon"
   ],
+
 
   alias: {
     '~/shared': './shared'
@@ -26,11 +20,27 @@ export default defineNuxtConfig({
 
   typescript: {
 		strict: true,
-		typeCheck: true,
+		typeCheck: false,
 	},
 
   nitro: {
-    preset: "node-server",
+    experimental: {
+      openAPI: true,
+    },
+    preset: "cloudflare_module",
+    cloudflare: {
+            deployConfig: true,
+            nodeCompat: true,
+            wrangler : {
+                routes: [
+					{
+						pattern: "templates.wrikka.com",
+						custom_domain: true,
+					},
+				]
+            }
+        },
+    
   },
 
   routeRules: {
@@ -46,6 +56,7 @@ export default defineNuxtConfig({
         },
         typescript: true,
         vueTsc: true,
+        oxlint: true,
       }),
     ],
   }

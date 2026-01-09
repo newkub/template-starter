@@ -5,4 +5,9 @@ export default defineAppConfig({
     primary: 'blue',
     secondary: 'gray',
   },
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: '',
+  },
 })

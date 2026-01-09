@@ -86,7 +86,7 @@ export const ecosystems: EcosystemConfig[] = [
 		id: "flutter",
 		name: "Flutter",
 		description: "Build beautiful apps",
-		icon: "mdi:language-dart",
+		icon: "mdi:cellphone",
 		libraries: {
 			ui: [
 				{ id: "flutter-ui", name: "Material", description: "Material Design", icon: "mdi:palette" },
@@ -140,4 +140,11 @@ export const libraryCategories: LibraryCategoryConfig[] = [
 	{ id: "api", name: "API", icon: "mdi:api" },
 	{ id: "auth", name: "Auth", icon: "mdi:shield-account" },
 	{ id: "db", name: "Database", icon: "mdi:database-cog" },
+];
+
+export const packageManagers = [
+	{ id: "bun", name: "Bun", icon: "mdi:run-fast" },
+	{ id: "npm", name: "npm", icon: "mdi:npm" },
+	{ id: "pnpm", name: "pnpm", icon: "mdi:package-variant" },
+	{ id: "yarn", name: "Yarn", icon: "mdi:yarn" },
 ];
