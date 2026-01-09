@@ -11,6 +11,12 @@ A CLI tool for managing templates and configurations, built with Bun.
 ### Features
 
 - **Project Scaffolding**: Create new projects from various templates (`next`, `nuxt`, `monorepo`, etc.).
+- **Template Versioning**: Track and manage template versions with changelog support.
+- **Interactive Preview**: Preview template structure, dependencies, and features before creating.
+- **Dry Run Mode**: Preview what will be created without actually creating files.
+- **Template Validation**: Validate template structure and check project health.
+- **Custom Templates**: Register and manage custom templates from local or remote sources.
+- **Plugin System**: Extend functionality with custom plugins and hooks.
 - **Interactive Prompts**: User-friendly prompts powered by `@clack/prompts` to guide you through the process.
 - **Configuration Syncing**: Sync configuration files from a template to your current project.
 - **Submodule Management**: Add and remove Git submodules effortlessly.
@@ -36,11 +42,17 @@ src/
 ├── components/         # UI components (pure functions)
 ├── config/            # Application configuration
 ├── constant/          # Compile-time constants
-├── handlers/          # Command handlers
-├── lib/               # External library wrappers
-├── schemas/           # Zod schemas for validation
 ├── services/          # Business logic and side effects
+│   ├── version.service.ts      # Template version management
+│   ├── preview.service.ts      # Template preview functionality
+│   ├── dry-run.service.ts      # Dry run mode
+│   ├── validation.service.ts   # Template validation
+│   ├── registry.service.ts     # Custom template registry
+│   └── plugin.service.ts       # Plugin system
 ├── types/             # TypeScript type definitions
+│   ├── version.ts                # Version-related types
+│   ├── validation.ts             # Validation-related types
+│   └── plugin.ts                 # Plugin-related types
 └── utils/             # Pure utility functions
 ```
 
