@@ -1,0 +1,45 @@
+{
+  "name": "browser-extension",
+  "displayName": "Browser Extension",
+  "description": "Browser extension template built with reactive-vscode",
+  "version": "0.0.1",
+  "publisher": "newkub",
+  "private": true,
+  "packageManager": "bun@1.3.5",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "type": "module",
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "browser.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "categories": [
+    "Other"
+  ],
+  "scripts": {
+    "watch": "bun --watch verify",
+    "dev": "bun run src/index.ts",
+    "format": "dprint fmt",
+    "lint": "tsc --noEmit",
+    "build": "tsc",
+    "test": "echo \"No tests configured\" && exit 0",
+    "verify": "bun run format && bun audit && bun run lint && bun run test && bun run build && bun run dev",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.107.0",
+    "reactive-vscode": "^0.2.22",
+    "typescript": "^5.9.3",
+    "vsce": "^2.15.0"
+  }
+}

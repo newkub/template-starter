@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "watch": "bun --watch verify",
+    "dev": "bun run src/index.ts",
+    "format": "",
+    "lint": "tsc --noEmit",
+    "build": "",
+    "test": "",
+    "verify": "bun run format && bun run lint && bun run test && bun run build"
+  },
+  "dependencies": {
+    "effect": "^3.19.14",
+    "zod": "^3.25.76"
+  }
+}

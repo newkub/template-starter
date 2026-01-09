@@ -1,0 +1,21 @@
+{
+  "$schema": "./dist/.templates-cli.schema.json",
+  "github": {
+    "owner": "newkub",
+    "repository": "templates",
+    "branch": "main",
+    "templatesPath": "templates"
+  },
+  "customTemplates": {
+    "my-custom-template": "custom/my-template",
+    "another-template": "templates/another"
+  },
+  "defaultProjectName": "my-project",
+  "autoConfirm": false,
+  "openBrowser": true,
+  "placeholders": {
+    "projectName": "my-awesome-project",
+    "submoduleUrl": "https://github.com/user/repo",
+    "submodulePath": "templates/my-submodule"
+  }
+}

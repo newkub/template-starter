@@ -1,0 +1,18 @@
+language: 'typescript'
+
+tasks:
+  lint:
+    command: 'moon run lint'
+    platform: 'system'
+  format:
+    command: 'moon run format'
+    platform: 'system'
+  build:
+    command: 'moon run build'
+    platform: 'system'
+  test:
+    command: 'moon run test'
+    platform: 'system'
+  dev:
+    command: 'moon run dev'
+    platform: 'system'

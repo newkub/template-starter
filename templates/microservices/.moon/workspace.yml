@@ -1,0 +1,24 @@
+$schema: 'https://moonrepo.dev/schemas/workspace.json'
+
+vcs:
+  manager: 'git'
+  defaultBranch: 'main'
+
+projects:
+  - 'apps/*'
+  - 'packages/*'
+
+runner:
+  archivableTargets:
+    - 'dev'
+    - 'build'
+    - 'test'
+
+docker:
+  scaffold:
+    configsPhaseGlobs:
+      - '**/package.json'
+      - '**/tsconfig.json'
+  prune:
+    deleteVendorDirectories: true
+    installToolchainDependencies: true
