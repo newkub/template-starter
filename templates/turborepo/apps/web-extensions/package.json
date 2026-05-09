@@ -20,13 +20,13 @@
     "publish": "wxt publish"
   },
   "dependencies": {
-    "reactive-vscode": "^0.3.0"
+    "reactive-vscode": "^0.3.3"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.315",
     "@types/firefox-webext-browser": "^143.0.0",
-    "typescript": "^5.7.3",
-    "wxt": "^0.20.13",
-    "oxlint-tsgolint": "^0.10.1"
+    "oxlint-tsgolint": "^0.10.1",
+    "typescript": "^5.9.3",
+    "wxt": "^0.20.18"
   }
 }

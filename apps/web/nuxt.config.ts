@@ -13,11 +13,6 @@ export default defineNuxtConfig({
     "@nuxt/icon"
   ],
 
-
-  alias: {
-    '~/shared': './shared'
-  },
-
   typescript: {
 		strict: true,
 		typeCheck: false,

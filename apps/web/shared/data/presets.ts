@@ -1,4 +1,4 @@
-import type { Preset } from "~~/shared/types/template";
+import type { Preset } from "#shared/types/template";
 
 export const presets: Preset[] = [
 	{

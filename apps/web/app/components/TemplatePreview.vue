@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import type { GeneratedTemplate, TemplateFile } from "~/shared/types/template";
+import type { GeneratedTemplate, TemplateFile } from "#shared/types/template";
 import { useClipboard } from "~/composables/core/useClipboard";
 
 interface Props {

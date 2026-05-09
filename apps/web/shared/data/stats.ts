@@ -1,4 +1,4 @@
-import type { LibraryStats, EcosystemStats } from "~~/shared/types/template";
+import type { LibraryStats, EcosystemStats } from "#shared/types/template";
 
 export const libraryStats: LibraryStats[] = [
 	{ id: "shadcn", name: "shadcn/ui", usageCount: 1250, trend: "up" },

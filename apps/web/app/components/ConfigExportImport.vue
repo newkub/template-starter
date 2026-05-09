@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import type { TemplateConfig } from "~/shared/types/template";
+import type { TemplateConfig } from "#shared/types/template";
 import { useConfigExportImport } from "~/composables/core/useConfigExportImport";
 import { useToast } from "~/composables/core/useToast";
 

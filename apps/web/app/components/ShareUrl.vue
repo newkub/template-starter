@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import type { TemplateConfig } from "~/shared/types/template";
+import type { TemplateConfig } from "#shared/types/template";
 import { useUrlShare } from "~/composables/core/useUrlShare";
 import { useClipboard } from "~/composables/core/useClipboard";
 

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useThemeToggle } from "~/composables/useThemeToggle";
-
 const { colorMode, toggleTheme } = useThemeToggle();
 </script>
 

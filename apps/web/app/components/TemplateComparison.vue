@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import type { TemplateConfig, TemplateComparison as TemplateComparisonType } from "~/shared/types/template";
+import type { TemplateConfig, TemplateComparison as TemplateComparisonType } from "#shared/types/template";
 
 interface Props {
 	configs: TemplateConfig[];

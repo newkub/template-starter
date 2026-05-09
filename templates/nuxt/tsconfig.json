@@ -2,8 +2,12 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "~/server/*": ["./server/*"],
-      "~/shared/*": ["./shared/*" ]
+      "~/server/*": [
+        "./server/*"
+      ],
+      "#shared/*": [
+        "./shared/*"
+      ]
     }
   }
 }

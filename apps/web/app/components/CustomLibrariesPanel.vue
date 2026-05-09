@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import type { CustomLibrary, LibraryCategory } from "~/shared/types/template";
+import type { CustomLibrary, LibraryCategory } from "#shared/types/template";
 import { useCustomLibraries } from "~/composables/core/useCustomLibraries";
-import { libraryCategories } from "~/shared/data/ecosystems";
+import { libraryCategories } from "#shared/data/ecosystems";
 
 const { customLibraries, addLibrary, deleteLibrary } = useCustomLibraries();
 

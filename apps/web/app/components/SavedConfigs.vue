@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useTemplateSelector } from "~/composables/facade/useTemplateSelector";
 import { useSavedConfigs } from "~/composables/core/useSavedConfigs";
-import type { SavedConfig, TemplateConfig } from "~/shared/types/template";
+import type { SavedConfig, TemplateConfig } from "#shared/types/template";
 
 interface Props {
 	onLoad: (config: TemplateConfig) => void;

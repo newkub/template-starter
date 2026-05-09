@@ -92,7 +92,7 @@ Create a `.env` file based on `.env.example` for environment-specific configurat
 ### Path Aliases
 
 - `~/server/*` - Server-side code
-- `~/shared/*` - Shared code between client and server
+- `#shared/*` - Shared code between client and server
 - `~/composables/*` - Auto-imported composables
 - `~/components/*` - Auto-imported components
 - `~/utils/*` - Auto-imported utilities

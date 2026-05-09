@@ -13,7 +13,7 @@
     "verify": "bun run format && bun audit && bun run lint && bun run test && bun run build && bun run dev"
   },
   "dependencies": {
-    "effect": "^3.19.14",
+    "effect": "^3.19.19",
     "zod": "^3.25.76"
   }
 }

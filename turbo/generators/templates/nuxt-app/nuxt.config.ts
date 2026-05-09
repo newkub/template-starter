@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 		"@scalar/nuxt",
 	],
 	alias: {
-		"~/shared": "./shared",
+		"#shared": "./shared",
 	},
 	nitro: {
 		routeRules: {

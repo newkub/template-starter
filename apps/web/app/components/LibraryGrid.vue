@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import { useTemplateSelector } from "~/composables/facade/useTemplateSelector";
 
 const { currentLibraries, getCategoryName, toggleLibrary, isSelected } = useTemplateSelector();

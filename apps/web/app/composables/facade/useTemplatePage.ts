@@ -1,4 +1,4 @@
-import type { TemplateConfig } from "~~/shared/types/template";
+import type { TemplateConfig } from "#shared/types/template";
 import { useTemplateSelector } from "~/composables/facade/useTemplateSelector";
 import { useHistory } from "~/composables/core/useHistory";
 import { useTemplateGenerator } from "~/composables/core/useTemplateGenerator";

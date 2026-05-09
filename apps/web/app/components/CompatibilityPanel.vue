@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import type { TemplateConfig, CompatibilityIssue } from "~/shared/types/template";
+import type { TemplateConfig, CompatibilityIssue } from "#shared/types/template";
 import { useCompatibility } from "~/composables/core/useCompatibility";
 
 interface Props {

@@ -114,3 +114,176 @@ export interface EcosystemStats {
 	usageCount: number;
 	popularLibraries: LibraryStats[];
 }
+
+export interface TemplateVersion {
+	id: string;
+	templateId: string;
+	version: string;
+	config: TemplateConfig;
+	changes: string[];
+	createdAt: string;
+	createdBy?: string;
+}
+
+export interface VersionHistory {
+	templateId: string;
+	versions: TemplateVersion[];
+	currentVersion: string;
+}
+
+export interface LibraryRecommendation {
+	library: Library;
+	reason: string;
+	confidence: number;
+	relatedLibraries?: string[];
+}
+
+export interface UseCase {
+	id: string;
+	name: string;
+	description: string;
+	icon: string;
+	recommendedLibraries: Record<Ecosystem, string[]>;
+}
+
+export interface MarketplaceTemplate {
+	id: string;
+	name: string;
+	description: string;
+	icon: string;
+	config: TemplateConfig;
+	author: {
+		id: string;
+		name: string;
+		avatar?: string;
+	};
+	stats: {
+		rating: number;
+		ratingCount: number;
+		downloads: number;
+		views: number;
+	};
+	tags: string[];
+	createdAt: string;
+	updatedAt: string;
+	isFeatured?: boolean;
+}
+
+export interface DeployConfig {
+	provider: "vercel" | "netlify" | "cloudflare" | "github";
+	projectName: string;
+	environmentVariables?: Record<string, string>;
+	buildCommand?: string;
+	outputDirectory?: string;
+}
+
+export interface DeployStatus {
+	id: string;
+	templateId: string;
+	provider: DeployConfig["provider"];
+	status: "pending" | "building" | "success" | "failed";
+	url?: string;
+	error?: string;
+	startedAt: string;
+	completedAt?: string;
+}
+
+export interface TestResult {
+	id: string;
+	templateId: string;
+	version: string;
+	status: "passed" | "failed" | "warning" | "skipped";
+	tests: {
+		name: string;
+		status: "passed" | "failed" | "skipped";
+		message?: string;
+		duration: number;
+	}[];
+	startedAt: string;
+	completedAt: string;
+}
+
+export interface ValidationResult {
+	isValid: boolean;
+	errors: string[];
+	warnings: string[];
+	suggestions: string[];
+}
+
+export interface Team {
+	id: string;
+	name: string;
+	members: TeamMember[];
+	createdAt: string;
+}
+
+export interface TeamMember {
+	id: string;
+	name: string;
+	email: string;
+	role: "owner" | "admin" | "editor" | "viewer";
+	avatar?: string;
+	joinedAt: string;
+}
+
+export interface SharedTemplate {
+	id: string;
+	templateId: string;
+	teamId: string;
+	sharedBy: string;
+	permission: "read" | "write" | "admin";
+	sharedAt: string;
+}
+
+export interface AnalyticsData {
+	templateId: string;
+	date: string;
+	metrics: {
+		views: number;
+		downloads: number;
+		generations: number;
+		deployments: number;
+	};
+	popularLibraries: {
+		libraryId: string;
+		count: number;
+	}[];
+}
+
+export interface DependencyConflict {
+	library1: string;
+	library2: string;
+	severity: "error" | "warning" | "info";
+	message: string;
+	resolution?: string;
+	alternatives?: string[];
+}
+
+export interface DocumentationConfig {
+	includeReadme: boolean;
+	includeChangelog: boolean;
+	includeContributing: boolean;
+	includeLicense: boolean;
+	customSections?: {
+		title: string;
+		content: string;
+	}[];
+}
+
+export interface ExportConfig {
+	format: "github" | "gitlab" | "folder";
+	repoName?: string;
+	repoDescription?: string;
+	isPrivate?: boolean;
+	includeGit?: boolean;
+}
+
+export interface ExportResult {
+	id: string;
+	format: ExportConfig["format"];
+	url?: string;
+	path?: string;
+	status: "pending" | "success" | "failed";
+	error?: string;
+	exportedAt: string;
+}

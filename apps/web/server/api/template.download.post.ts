@@ -1,6 +1,7 @@
 import JSZip from "jszip";
-import type { TemplateConfig } from "../../shared/types/template";
-import { useTemplateGenerator } from "../../app/composables/core/useTemplateGenerator";
+import type { TemplateConfig, TemplateFile } from "#shared/types/template";
+import { useTemplateGenerator } from "~/composables/core/useTemplateGenerator";
+import { defineEventHandler, readBody, createError, setHeader } from 'h3';
 
 export default defineEventHandler(async (event) => {
 	try {
@@ -18,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
 		const zip = new JSZip();
 
-		template.files.forEach((file: any) => {
+		template.files.forEach((file: TemplateFile) => {
 			zip.file(file.path, file.content);
 		});
 

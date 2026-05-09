@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import { useTemplateSelector } from "~/composables/facade/useTemplateSelector";
 import { useTemplateGenerator } from "~/composables/core/useTemplateGenerator";
 import { useClipboard } from "~/composables/core/useClipboard";
+import type { TemplateFile } from "#shared/types/template";
 
 const { selectedEcosystem, selectedLibraries, generateTemplate: generateTemplateConfig } = useTemplateSelector();
 const { generateTemplate } = useTemplateGenerator();
@@ -22,18 +22,18 @@ const generatedTemplate = computed(() => {
 
 const packageJson = computed(() => {
 	if (!generatedTemplate.value) return "";
-	const file = generatedTemplate.value.files.find((f) => f.path === "package.json");
+	const file = generatedTemplate.value.files.find((f: TemplateFile) => f.path === "package.json");
 	return file?.content || "";
 });
 
 const configFiles = computed(() => {
 	if (!generatedTemplate.value) return [];
-	return generatedTemplate.value.files.filter((f) => f.type === "config");
+	return generatedTemplate.value.files.filter((f: TemplateFile) => f.type === "config");
 });
 
 const readme = computed(() => {
 	if (!generatedTemplate.value) return "";
-	const file = generatedTemplate.value.files.find((f) => f.path === "README.md");
+	const file = generatedTemplate.value.files.find((f: TemplateFile) => f.path === "README.md");
 	return file?.content || "";
 });
 
@@ -41,7 +41,7 @@ const selectedConfigFile = ref<string | null>(null);
 
 const selectedConfigContent = computed(() => {
 	if (!selectedConfigFile.value || !generatedTemplate.value) return "";
-	const file = generatedTemplate.value.files.find((f) => f.path === selectedConfigFile.value);
+	const file = generatedTemplate.value.files.find((f: TemplateFile) => f.path === selectedConfigFile.value);
 	return file?.content || "";
 });
 

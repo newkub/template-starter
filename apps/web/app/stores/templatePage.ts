@@ -1,4 +1,4 @@
-import type { TemplateConfig, GeneratedTemplate } from "~~/shared/types/template";
+import type { TemplateConfig, GeneratedTemplate } from "#shared/types/template";
 
 type TabType = "build" | "presets" | "history" | "saved" | "stats" | "comparison";
 

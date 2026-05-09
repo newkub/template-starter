@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useTemplateSelector } from "~/composables/facade/useTemplateSelector";
 import { useHistory } from "~/composables/core/useHistory";
 import { useToast } from "~/composables/core/useToast";

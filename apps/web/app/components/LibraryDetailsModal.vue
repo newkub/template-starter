@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Library } from "~/shared/types/template";
+import type { Library } from "#shared/types/template";
 
 interface Props {
 	library: Library | null;

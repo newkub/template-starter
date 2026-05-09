@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TemplateConfig } from "~/shared/types/template";
+import type { TemplateConfig } from "#shared/types/template";
 import { useHistory } from "~/composables/core/useHistory";
 
 interface Props {

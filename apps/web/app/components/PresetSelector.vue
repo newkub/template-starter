@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import type { Preset, TemplateConfig } from "~/shared/types/template";
-import { presets } from "~/shared/data/presets";
+import type { Preset, TemplateConfig } from "#shared/types/template";
+import { presets } from "#shared/data/presets";
 
 interface Props {
 	onSelect: (config: TemplateConfig) => void;

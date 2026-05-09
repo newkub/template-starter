@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { libraryStats, ecosystemStats } from "~/shared/data/stats";
+import { libraryStats, ecosystemStats } from "#shared/data/stats";
 
 const getTrendIcon = (trend: string) => {
 	switch (trend) {

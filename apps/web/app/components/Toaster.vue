@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { TransitionGroup } from "vue";
 import { useToast, type ToastType } from "~/composables/core/useToast";
 
 const { toasts, removeToast } = useToast();
