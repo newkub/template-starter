@@ -17,19 +17,19 @@
   "dependencies": {
     "@vueuse/core": "^12.8.2",
     "clsx": "^2.1.1",
-    "next": "^15.5.12",
-    "react": "^19.0.4",
-    "react-dom": "^19.0.4",
+    "next": "^15.5.18",
+    "react": "^19.0.6",
+    "react-dom": "^19.0.6",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
-    "@types/node": "^22.19.11",
+    "@types/node": "^22.19.18",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.24",
+    "autoprefixer": "^10.5.0",
     "oxlint-tsgolint": "^0.10.1",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.2.1",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.3.0",
     "typescript": "^5.9.3"
   }
 }

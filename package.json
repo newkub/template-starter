@@ -2,7 +2,7 @@
   "name": "templates",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "bun@1.3.9",
+  "packageManager": "bun@1.3.13",
   "type": "module",
   "globalConcurrency": 32,
   "workspaces": [
@@ -23,6 +23,6 @@
     "devtools": "turbo devtools"
   },
   "devDependencies": {
-    "turbo": "^2.8.10"
+    "turbo": "^2.9.12"
   }
 }

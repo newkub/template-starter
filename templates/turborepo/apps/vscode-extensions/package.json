@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.118.0"
   },
   "categories": [
     "Other"
@@ -40,8 +40,8 @@
     "reactive-vscode": "^0.3.3"
   },
   "devDependencies": {
-    "@types/vscode": "^1.109.0",
-    "@vscode/vsce": "^3.7.1",
+    "@types/vscode": "^1.118.0",
+    "@vscode/vsce": "^3.9.1",
     "oxlint-tsgolint": "^0.10.1",
     "typescript": "^5.9.3"
   }

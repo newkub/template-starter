@@ -18,24 +18,24 @@
     "tauri:build": "tauri build"
   },
   "dependencies": {
-    "@nuxt/icon": "^2.2.1",
+    "@nuxt/icon": "^2.2.2",
     "@nuxtjs/color-mode": "^4.0.0",
     "@pinia/nuxt": "^0.11.3",
-    "@scalar/nuxt": "^0.5.83",
-    "@tauri-apps/api": "^2.10.1",
-    "@unocss/nuxt": "^66.6.1",
+    "@scalar/nuxt": "^0.5.90",
+    "@tauri-apps/api": "^2.11.0",
+    "@unocss/nuxt": "^66.6.8",
     "@vue-macros/nuxt": "^3.1.2",
-    "@vueuse/nuxt": "^14.2.1",
+    "@vueuse/nuxt": "^14.3.0",
     "nuxt": "^4.2.2",
     "nuxt-mcp-dev": "^0.3.2",
     "pinia": "^3.0.4",
-    "vue": "^3.5.29"
+    "vue": "^3.5.34"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2.10.0",
+    "@tauri-apps/cli": "^2.11.1",
     "oxlint-tsgolint": "^0.10.1",
     "vite-plugin-checker": "^0.12.0",
     "vite-plugin-tauri": "^3.7.3",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.2.8"
   }
 }

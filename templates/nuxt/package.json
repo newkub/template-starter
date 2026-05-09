@@ -2,7 +2,7 @@
   "name": "nuxt",
   "private": true,
   "type": "module",
-  "packageManager": "bun@1.3.9",
+  "packageManager": "bun@1.3.13",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -12,27 +12,27 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/icon": "^2.2.1",
+    "@nuxt/icon": "^2.2.2",
     "@nuxtjs/color-mode": "^4.0.0",
     "@pinia/nuxt": "^0.11.3",
-    "@scalar/nuxt": "^0.5.83",
-    "@unocss/nuxt": "^66.6.1",
+    "@scalar/nuxt": "^0.5.90",
+    "@unocss/nuxt": "^66.6.8",
     "@vue-macros/nuxt": "^3.1.2",
-    "@vueuse/nuxt": "^14.2.1",
+    "@vueuse/nuxt": "^14.3.0",
     "nuxt": "^4.2.2",
     "nuxt-mcp-dev": "^0.3.2",
     "pinia": "^3.0.4",
-    "unocss": "^66.6.1",
-    "vue": "^3.5.29"
+    "unocss": "^66.6.8",
+    "vue": "^3.5.34"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
     "dprint": "^0.51.1",
-    "oxlint": "^1.50.0",
+    "oxlint": "^1.63.0",
     "typescript": "^5.9.3",
     "vite-plugin-checker": "^0.12.0",
-    "vitest": "^4.0.18",
-    "vue-tsc": "^3.2.5",
-    "wrangler": "^4.68.1"
+    "vitest": "^4.1.5",
+    "vue-tsc": "^3.2.8",
+    "wrangler": "^4.90.0"
   }
 }
