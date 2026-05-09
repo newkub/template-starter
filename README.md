@@ -29,39 +29,3 @@ Collection of project templates following best practices with comprehensive tool
 | <center><img src="https://api.iconify.design/mdi/console.svg" width="24" height="24"></center> | **cli** | CLI tool for managing templates and configurations with interactive prompts and automation | `bun add @wrikka/cli` |
 | <center><img src="https://api.iconify.design/mdi/web.svg" width="24" height="24"></center> | **web** | Web application built with Nuxt 4, Vue 3, and modern development ecosystem | `bun add @wrikka/web` |
 
-## Available Scripts
-
-- `bun run dev` - Start development servers with TUI
-- `bun run build` - Build all workspaces
-- `bun run test` - Run tests across all packages
-- `bun run lint` - Run linting with Oxlint
-- `bun run format` - Format code with Dprint
-- `bun run verify` - Run all checks (format, lint, test, build)
-- `bun run watch` - Watch mode with TUI for continuous development
-- `bun run devtools` - Open Turborepo devtools
-- `bun run scan` - Scan codebase with ast-grep
-- `bun run check:modules` - Inspect node modules
-
-## Development
-
-```bash
-# Install dependencies
-bun install
-
-# Start development
-bun run dev
-
-# Run tests
-bun run test
-
-# Build all projects
-bun run build
-
-# Format and lint
-bun run format
-bun run lint
-```
-
-## License
-
-MIT
