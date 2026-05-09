@@ -1,11 +1,132 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "config:recommended"],
-  "schedule": ["every day"],
+  "extends": [
+    "config:base",
+    "config:recommended",
+    "customManagers:biomeVersions",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":automergeDigest",
+    ":automergeBranch"
+  ],
+  "schedule": ["every weekend"],
+  "timezone": "Asia/Bangkok",
+  "prConcurrentLimit": 3,
+  "branchConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies", "renovate"],
+  "assignees": ["@dependabot"],
+  "reviewers": ["@dependabot"],
+  "updateLockFiles": true,
+  "rangeStrategy": "bump",
+  "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
+      "description": "Auto merge minor and patch updates",
+      "matchUpdateTypes": ["minor", "patch"],
       "matchDepTypes": ["dependencies", "devDependencies"],
-      "automerge": true
+      "automerge": true,
+      "minimumReleaseAge": "3 days",
+      "stabilityDays": 3
+    },
+    {
+      "description": "Group updates by manager",
+      "groupName": "npm dependencies",
+      "matchManagers": ["npm", "bun"]
+    },
+    {
+      "description": "Group development dependencies",
+      "groupName": "dev dependencies",
+      "matchDepTypes": ["devDependencies"],
+      "matchManagers": ["npm", "bun"]
+    },
+    {
+      "description": "Bun package manager updates",
+      "matchPackageNames": ["bun"],
+      "groupName": "bun updates",
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "description": "Turbo monorepo tool updates",
+      "matchPackageNames": ["turbo"],
+      "groupName": "turbo updates",
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "description": "Major updates require manual review",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "stabilityDays": 7
+    },
+    {
+      "description": "Nuxt ecosystem updates",
+      "matchPackagePrefixes": ["@nuxt/", "nuxt"],
+      "groupName": "nuxt ecosystem",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Vue ecosystem updates",
+      "matchPackagePrefixes": ["vue", "@vue"],
+      "groupName": "vue ecosystem",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "UnoCSS updates",
+      "matchPackagePrefixes": ["@unocss/", "unocss"],
+      "groupName": "unocss ecosystem",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Pinia updates",
+      "matchPackagePrefixes": ["pinia", "@pinia"],
+      "groupName": "pinia ecosystem",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "VueUse updates",
+      "matchPackagePrefixes": ["@vueuse/"],
+      "groupName": "vueuse ecosystem",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "TypeScript updates",
+      "matchPackageNames": ["typescript", "vue-tsc"],
+      "groupName": "typescript ecosystem",
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "description": "Vitest updates",
+      "matchPackagePrefixes": ["vitest", "@vitest"],
+      "groupName": "vitest ecosystem",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Development tools updates",
+      "matchPackageNames": ["oxlint", "lefthook", "wrangler"],
+      "groupName": "dev tools",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Template packages - group by template type",
+      "matchPaths": ["templates/**"],
+      "groupName": "template packages",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Apps packages - group separately",
+      "matchPaths": ["apps/**"],
+      "groupName": "apps packages",
+      "schedule": ["every weekend"]
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security", "renovate"],
+    "automerge": true,
+    "stabilityDays": 1
+  }
 }
