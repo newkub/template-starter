@@ -1,4 +1,5 @@
 {
+  "name": "@wrikka/bun-lib",
   "type": "module",
   "engines": {
     "bun": ""

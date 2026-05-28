@@ -1,4 +1,5 @@
 {
+  "name": "@wrikka/node-lib",
   "type": "module",
   "engines": {
     "node": ">=18"
