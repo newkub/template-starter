@@ -4,7 +4,6 @@
 
 A collection of production-ready project templates following modern development workflows. Managed with Moonrepo for efficient monorepo orchestration across multiple applications and shared packages.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Bun](https://img.shields.io/badge/Bun-1.1.38+-ff69b4?logo=bun)](https://bun.sh)
 [![Moonrepo](https://img.shields.io/badge/Moonrepo-2.2.6-blue?logo=moonrepo)](https://moonrepo.dev)
 
@@ -314,19 +313,17 @@ moon run build
 
 ## Notes
 
-> **Tip:** Use `--affected` flag to run tasks only on changed projects for faster development cycles.
+[!TIP]
+Use `--affected` flag to run tasks only on changed projects for faster development cycles.
 
-> **Important:** Always run `moon check` after modifying configuration files to ensure validity.
+[!IMPORTANT]
+Always run `moon check` after modifying configuration files to ensure validity.
 
-> **Warning:** Never commit `.moon/cache/` directory as it contains build artifacts and should be gitignored.
+[!WARNING]
+Never commit `.moon/cache/` directory as it contains build artifacts and should be gitignored.
 
-> **Caution:** Be careful when using `--force` flag as it bypasses cache and may slow down builds.
-
----
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
+[!CAUTION]
+Be careful when using `--force` flag as it bypasses cache and may slow down builds.
 
 ---
 
