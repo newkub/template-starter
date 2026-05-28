@@ -5,11 +5,16 @@
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "bun test",
-    "lint": "moon run lint",
-    "format": "moon run format",
-    "clean": "rimraf dist"
+    "build": "bun build",
+    "test": "vitest run",
+    "lint": "biome check",
+    "format": "biome check --write",
+    "clean": "rimraf dist",
+    "dev": "bun run src/index.ts",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "devDependencies": {
     "@types/node": "^22.19.18",

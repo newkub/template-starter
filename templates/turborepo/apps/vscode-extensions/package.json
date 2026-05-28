@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "vscode": "^1.118.0"
+    "vscode": "^1.120.0"
   },
   "categories": [
     "Other"
@@ -25,22 +25,25 @@
   },
   "scripts": {
     "watch": "bun --watch verify",
-    "dev": "bun run src/extension.ts",
-    "format": "dprint fmt",
-    "lint": "oxlint --fix --type-aware",
-    "build": "tsc",
-    "test": "vitest --run",
+    "dev": "bun run src/index.ts",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "build": "bun build",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "verify": "bun run format && bun audit && bun run lint && bun run test && bun run build && bun run dev",
+    "verify": "bun run lint && bun run typecheck && bun run test",
     "package": "vsce package",
-    "publish": "vsce publish"
+    "publish": "vsce publish",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "reactive-vscode": "^0.3.3"
   },
   "devDependencies": {
-    "@types/vscode": "^1.118.0",
+    "@types/vscode": "^1.120.0",
     "@vscode/vsce": "^3.9.1",
     "oxlint-tsgolint": "^0.10.1",
     "typescript": "^5.9.3"

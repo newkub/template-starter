@@ -5,12 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --target bun",
+    "build": "bun build",
     "start": "bun dist/index.js",
-    "test": "bun test",
-    "lint": "moon run lint",
-    "format": "moon run format",
-    "clean": "rimraf dist"
+    "test": "vitest run",
+    "lint": "biome check",
+    "format": "biome check --write",
+    "clean": "rimraf dist",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.3",

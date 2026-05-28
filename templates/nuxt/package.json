@@ -7,9 +7,14 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "preview": "nuxt preview",
-    "format": "dprint fmt",
-    "lint": "vue-tsc --noEmit",
-    "postinstall": "nuxt prepare"
+    "format": "biome check --write",
+    "lint": "biome check",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "@nuxt/icon": "^2.2.2",

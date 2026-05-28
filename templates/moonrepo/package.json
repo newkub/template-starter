@@ -11,15 +11,18 @@
   "scripts": {
     "watch": "moon run watch",
     "prepare": "bunx lefthook install",
-    "dev": "moon run dev",
-    "build": "moon run build",
-    "test": "moon run test",
-    "verify": "bun run lint && bun run test && bun run build",
-    "lint": "moon run lint",
+    "dev": "bun run src/index.ts",
+    "build": "bun build",
+    "test": "vitest run",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "lint": "biome check",
     "lint:direct": "oxlint --fix",
-    "format": "moon run format",
+    "format": "biome check --write",
     "format:direct": "dprint fmt",
-    "clean": "moon run clean && bunx rimraf node_modules"
+    "clean": "moon run clean && bunx rimraf node_modules",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "ci": "bun run verify && bun run build"
   },
   "devDependencies": {
     "@moonrepo/cli": "^1.41.7",

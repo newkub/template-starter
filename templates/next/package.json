@@ -4,12 +4,17 @@
   "packageManager": "bun@1.3.13",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx oxlint --write-suggestions",
-    "format": "dprint fmt",
-    "react-scan": "next dev --turbopack && bunx react-scan localhost:3000"
+    "lint": "biome check",
+    "format": "biome check --write",
+    "react-scan": "next dev --turbopack && bunx react-scan localhost:3000",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "@stagewise/toolbar-vue": "^0.5.2",

@@ -4,20 +4,23 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wxt",
-    "build": "wxt build",
+    "dev": "bun run src/index.ts",
+    "build": "bun build",
     "build:firefox": "wxt build --browser firefox",
     "zip": "wxt zip",
     "zip:firefox": "wxt zip --browser firefox",
     "compile": "wxt compile",
-    "format": "dprint fmt",
-    "lint": "oxlint --fix --type-aware",
-    "test": "vitest --run",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "verify": "bun run format && bun run lint && bun run test && bun run build",
+    "verify": "bun run lint && bun run typecheck && bun run test",
     "package": "wxt zip",
-    "publish": "wxt publish"
+    "publish": "wxt publish",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "reactive-vscode": "^0.3.3"
@@ -27,6 +30,6 @@
     "@types/firefox-webext-browser": "^143.0.0",
     "oxlint-tsgolint": "^0.10.1",
     "typescript": "^5.9.3",
-    "wxt": "^0.20.25"
+    "wxt": "^0.20.26"
   }
 }

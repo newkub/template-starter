@@ -5,27 +5,34 @@
   "private": true,
   "scripts": {
     "astro": "astro",
-    "build": "astro check && astro build",
-    "dev": "astro dev",
+    "build": "bun build",
+    "dev": "bun run src/index.ts",
     "preview": "astro preview",
     "start": "astro dev",
-    "postbuild": "cp _headers ./dist/"
+    "postbuild": "cp _headers ./dist/",
+    "typecheck": "tsgo --noEmit",
+    "lint": "biome check",
+    "format": "biome check --write",
+    "test": "vitest run",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
-    "@tutorialkit/react": "1.5.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "@tutorialkit/react": "1.6.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/react": "4.3.0",
-    "@tutorialkit/astro": "1.5.2",
-    "@tutorialkit/theme": "1.5.2",
-    "@tutorialkit/types": "1.5.2",
-    "@types/node": "24.0.12",
-    "@types/react": "19.1.8",
-    "astro": "5.11.0",
+    "@astrojs/react": "5.0.6",
+    "@tutorialkit/astro": "1.6.0",
+    "@tutorialkit/theme": "1.6.0",
+    "@tutorialkit/types": "1.6.0",
+    "@types/node": "25.9.1",
+    "@types/react": "19.2.15",
+    "astro": "6.4.2",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

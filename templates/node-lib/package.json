@@ -6,11 +6,14 @@
   "scripts": {
     "watch": "bun --watch verify",
     "dev": "bun run src/index.ts",
-    "format": "",
-    "lint": "tsc --noEmit",
-    "build": "",
-    "test": "",
-    "verify": "bun run format && bun run lint && bun run test && bun run build"
+    "format": "biome check --write",
+    "lint": "biome check",
+    "build": "bun build",
+    "test": "vitest run",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "effect": "^3.21.2",

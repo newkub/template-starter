@@ -2,7 +2,7 @@
   "name": "turborepo-template",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "bun@1.3.13",
+  "packageManager": "bun@1.3.14",
   "type": "module",
   "globalConcurrency": 32,
   "workspaces": [
@@ -12,21 +12,23 @@
   "scripts": {
     "watch": "turbo watch verify --ui=tui",
     "prepare": "wtemplates use",
-    "dev": "turbo dev --ui=tui",
-    "format": "turbo format",
-    "scan": "bunx sg scan -r",
+    "dev": "bun run src/index.ts",
+    "format": "biome check --write",
+    "scan": "ast-grep scan",
     "check:modules": "bunx node-modules-inspector",
-    "lint": "turbo lint",
-    "test": "turbo test",
-    "build": "turbo build",
-    "verify": "turbo verify",
-    "devtools": "turbo devtools"
+    "lint": "biome check",
+    "test": "vitest run",
+    "build": "bun build",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "devtools": "turbo devtools",
+    "typecheck": "tsgo --noEmit",
+    "ci": "bun run verify && bun run build"
   },
   "devDependencies": {
     "@clack/prompts": "^0.11.0",
-    "@types/node": "^25.6.2",
+    "@types/node": "^25.9.1",
     "cli": "workspace:*",
-    "turbo": "^2.9.12",
+    "turbo": "^2.9.16",
     "vite": "^7.3.3"
   }
 }

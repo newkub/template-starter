@@ -5,12 +5,17 @@
   "type": "module",
   "scripts": {
     "prepare": "bunx lefthook install",
-    "dev": "vite dev",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "oxlint --fix --type-aware",
-    "format": "dprint fmt",
-    "tunnel": "bunx untun"
+    "lint": "biome check",
+    "format": "biome check --write",
+    "tunnel": "bunx untun",
+    "typecheck": "tsgo --noEmit",
+    "test": "vitest run",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "@million/lint": "^1.0.14",

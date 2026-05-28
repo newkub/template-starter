@@ -1,56 +1,59 @@
 {
-	"publisher": "vscode-vue",
-	"name": "your-extension",
-	"displayName": "Your Extension",
-	"type": "module",
-	"version": "0.0.1",
-	"private": true,
-	"packageManager": "bun@1.3.13",
-	"categories": [
-		"Other"
-	],
-	"main": "./dist/extension.cjs",
-	"engines": {
-		"vscode": "^1.118.0"
-	},
-	"activationEvents": [
-		"onStartupFinished"
-	],
-	"contributes": {
-		"commands": [
-			{
-				"command": "your-extension.helloWorld",
-				"title": "Hello World"
-			}
-		],
-		"configuration": {
-			"title": "Your Extension",
-			"properties": {
-				"your-extension.message": {
-					"type": "string",
-					"default": "Hello World",
-					"description": "The message to show in the notification"
-				}
-			}
-		}
-	},
-	"scripts": {
-		"watch": "bun --watch ./src/extension.ts",
-		"dev": "bun run ./src/extension.ts",
-		"format": "dprint check",
-		"lint": "bunx tsc --noEmit",
-		"build": "tsdown",
-		"test": "bun test",
-		"verify": "bun run format && bun audit && bun run lint && bun run test && bun run build",
-		"package": "vsce package",
-		"publish": "vsce publish",
-		"vscode:prepublish": "bun run build"
-	},
-	"devDependencies": {
-		"@types/node": "18.x",
-		"@types/vscode": "^1.118.0",
-		"reactive-vscode": "^0.2.22",
-		"tsdown": "^0.11.13",
-		"typescript": "^5.9.3"
-	}
+  "publisher": "vscode-vue",
+  "name": "your-extension",
+  "displayName": "Your Extension",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "bun@1.3.13",
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.cjs",
+  "engines": {
+    "vscode": "^1.118.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "your-extension.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "configuration": {
+      "title": "Your Extension",
+      "properties": {
+        "your-extension.message": {
+          "type": "string",
+          "default": "Hello World",
+          "description": "The message to show in the notification"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "watch": "bun --watch ./src/extension.ts",
+    "dev": "bun run src/index.ts",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "build": "bun build",
+    "test": "vitest run",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "vscode:prepublish": "bun run build",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "ci": "bun run verify && bun run build"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.118.0",
+    "reactive-vscode": "^0.2.22",
+    "tsdown": "^0.11.13",
+    "typescript": "^5.9.3"
+  }
 }

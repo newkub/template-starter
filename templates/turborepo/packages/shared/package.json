@@ -10,13 +10,17 @@
     "./utils": "./src/utils/index.ts"
   },
   "scripts": {
-    "format": "dprint fmt",
-    "lint": "oxlint --fix --type-aware",
-    "test": "vitest --run",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "build": "tsc",
-    "verify": "bun run format && bun run lint && bun run test && bun run build"
+    "build": "bun build",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "dev": "bun run src/index.ts",
+    "typecheck": "tsgo --noEmit",
+    "scan": "ast-grep scan",
+    "ci": "bun run verify && bun run build"
   },
   "devDependencies": {
     "oxlint-tsgolint": "^0.10.1",

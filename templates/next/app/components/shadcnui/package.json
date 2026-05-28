@@ -4,7 +4,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "lint": "eslint . --max-warnings 0"
+    "lint": "biome check",
+    "dev": "bun run src/index.ts",
+    "build": "bun build",
+    "typecheck": "tsgo --noEmit",
+    "format": "biome check --write",
+    "test": "vitest run",
+    "scan": "ast-grep scan",
+    "verify": "bun run lint && bun run typecheck && bun run test",
+    "ci": "bun run verify && bun run build"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
