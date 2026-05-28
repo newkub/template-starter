@@ -1,6 +1,11 @@
 
-# Turborepo
-.turbo
+# Moonrepo
+.moon/cache/
+run/
+.moon/
+
+# Moon config
+moon.yml
 
 # Dependency directories
 node_modules/
