@@ -1,11 +1,14 @@
 # Templates
 
-**Modern project templates with best practices and comprehensive tooling**
+**A production-ready monorepo of project templates and the CLI that scaffolds them**
 
-A collection of production-ready project templates following modern development workflows. Managed with Moonrepo for efficient monorepo orchestration across multiple applications and shared packages.
+This repository hosts a curated collection of 15 project templates (web apps, libraries, microservices, desktop, browser/editor extensions, presentations, and documentation sites) plus a small CLI that copies any template into a target directory. All workspaces share one task pipeline defined in `.moon/tasks/all.yml`, so format, lint, typecheck, test, and build behave the same way everywhere.
 
-[![Bun](https://img.shields.io/badge/Bun-1.1.38+-ff69b4?logo=bun)](https://bun.sh)
+[![Bun](https://img.shields.io/badge/Bun-1.3.13+-fbf0df?logo=bun)](https://bun.sh)
 [![Moonrepo](https://img.shields.io/badge/Moonrepo-2.2.6-blue?logo=moonrepo)](https://moonrepo.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-3178c6?logo=typescript)](https://www.typescriptlang.org)
+
+[Quick Start](#quick-start) · [Usage](#usage) · [Reference](#reference) · [Notes](#notes)
 
 ---
 
@@ -13,80 +16,79 @@ A collection of production-ready project templates following modern development 
 
 | Icon | Feature | Description | Benefit | Usage |
 |------|---------|-------------|---------|-------|
-| <img src="https://api.iconify.design/lucide:layers.svg?color=%23818cf8" width="18" height="18"> | **Monorepo Architecture** | Moonrepo-powered workspace with shared tasks and configuration | Consistent tooling across all projects | `moon run <task>` |
-| <img src="https://api.iconify.design/lucide:zap.svg?color=%23f59e0b" width="18" height="18"> | **Fast Build System** | Bun runtime with intelligent caching | 10x faster builds with cache hits | `moon run build --affected` |
-| <img src="https://api.iconify.design/lucide:shield-check.svg?color=%2310b981" width="18" height="18"> | **Quality Assurance** | Automated linting, type checking, and testing | Catch issues before they reach production | `moon run verify` |
-| <img src="https://api.iconify.design/lucide:git-branch.svg?color=%236366f1" width="18" height="18"> | **Git Hooks** | Pre-commit and pre-push automation | Enforce code quality standards | `bun run prepare` |
-| <img src="https://api.iconify.design/lucide:package.svg?color=%23ec4899" width="18" height="18"> | **Package Management** | Workspaces with shared dependencies | Reduced duplication and consistent versions | `bun install` |
-| <img src="https://api.iconify.design/lucide:layout.svg?color=%238b5cf6" width="18" height="18"> | **Multiple Templates** | 15+ project templates for various use cases | Start projects faster with best practices | `bun add @wrikka/<template>` |
+| <img src="https://api.iconify.design/lucide:layers.svg?color=%23818cf8" width="18" height="18"> | **Monorepo Architecture** | Bun workspaces orchestrated by Moonrepo | One toolchain, one task graph, every project | `moon run <task>` |
+| <img src="https://api.iconify.design/lucide:terminal.svg?color=%23f59e0b" width="18" height="18"> | **Template CLI** | A `templates` command that lists, views, uses, adds, and removes templates | Scaffold a new project in one command | `bunx @templates/template-cli use <name>` |
+| <img src="https://api.iconify.design/lucide:zap.svg?color=%236366f1" width="18" height="18"> | **Affected Tasks** | Moonrepo hashes inputs and caches outputs | Only changed projects run when you say `--affected` | `moon run build --affected` |
+| <img src="https://api.iconify.design/lucide:shield-check.svg?color=%2310b981" width="18" height="18"> | **Quality Gate** | Format → lint → typecheck → test → build, in that order | Catch issues before they leave your machine | `moon run verify` |
+| <img src="https://api.iconify.design/lucide:git-branch.svg?color=%23ec4899" width="18" height="18"> | **VCS Hooks** | Pre-commit runs lint/format on staged files, pre-push runs typecheck/test | No more pushing broken code | `bun run prepare` |
+| <img src="https://api.iconify.design/lucide:layout.svg?color=%238b5cf6" width="18" height="18"> | **15 Templates** | Bun/Node libs, Next/Nuxt/Vite/VitePress apps, Rust packages, microservices, extensions, Slidev, Tauri | Start with the shape that fits your use case | `bunx @templates/template-cli list` |
 
 ---
 
 ## Key Concepts
 
-> Learn the core concepts and principles behind this template collection
+> [!NOTE]
+> Background on the design choices behind this template collection
 
 <details>
-<summary>Key Concepts</summary>
+<summary><strong>Key Concepts</strong></summary>
 
 | Icon | Concept | Benefit |
 |------|---------|---------|
-| <img src="https://api.iconify.design/lucide:database.svg?color=%236366f1" width="18" height="18"> | **Workspace Orchestration** | Centralized task management across all projects |
-| <img src="https://api.iconify.design/lucide:cpu.svg?color=%238b5cf6" width="18" height="18"> | **Task Caching** | Intelligent caching for faster builds |
-| <img src="https://api.iconify.design/lucide:git-commit.svg?color=%2310b981" width="18" height="18"> | **Affected Tasks** | Run tasks only on changed projects |
-| <img src="https://api.iconify.design/lucide:settings.svg?color=%23f59e0b" width="18" height="18"> | **Toolchain Management** | Consistent Node.js and Bun versions |
-| <img src="https://api.iconify.design/lucide:file-code.svg?color=%23ec4899" width="18" height="18"> | **Shared Configuration** | Reusable task definitions |
-| <img src="https://api.iconify.design/lucide:workflow.svg?color=%23818cf8" width="18" height="18"> | **Task Dependencies** | Automatic task ordering and execution |
+| <img src="https://api.iconify.design/lucide:database.svg?color=%236366f1" width="18" height="18"> | **Workspace Orchestration** | Moonrepo discovers every workspace under `apps/*` and `templates/*` and runs tasks across them |
+| <img src="https://api.iconify.design/lucide:cpu.svg?color=%238b5cf6" width="18" height="18"> | **Task Caching** | Inputs are hashed, outputs are stored, and unchanged tasks are skipped on the next run |
+| <img src="https://api.iconify.design/lucide:git-commit.svg?color=%2310b981" width="18" height="18"> | **Affected Tasks** | The `--affected` flag scopes work to projects changed since the base branch |
+| <img src="https://api.iconify.design/lucide:settings.svg?color=%23f59e0b" width="18" height="18"> | **Toolchain Pinning** | `.moon/toolchains.yml` pins Node 22.11.0 and Bun 1.1.38 for the whole workspace |
+| <img src="https://api.iconify.design/lucide:file-code.svg?color=%23ec4899" width="18" height="18"> | **Shared Task Graph** | `.moon/tasks/all.yml` defines one task chain reused by every workspace |
+| <img src="https://api.iconify.design/lucide:workflow.svg?color=%23818cf8" width="18" height="18"> | **Task Dependencies** | Tasks declare `dependsOn` so format always runs before lint, lint before typecheck, and so on |
 
 </details>
 
 <details>
-<summary>Principles</summary>
+<summary><strong>Principles</strong></summary>
 
 | Icon | Principle | User Impact |
 |------|-----------|-------------|
-| <img src="https://api.iconify.design/lucide:rocket.svg?color=%23f59e0b" width="18" height="18"> | **Performance First** | Faster development cycles with caching |
-| <img src="https://api.iconify.design/lucide:check-circle.svg?color=%2310b981" width="18" height="18"> | **Quality Gates** | Automated quality checks prevent bad code |
-| <img src="https://api.iconify.design/lucide:repeat.svg?color=%236366f1" width="18" height="18"> | **Consistency** | Uniform tooling across all projects |
-| <img src="https://api.iconify.design/lucide:sliders.svg?color=%238b5cf6" width="18" height="18"> | **Flexibility** | Easy to customize per project needs |
-| <img src="https://api.iconify.design/lucide:book-open.svg?color=%23ec4899" width="18" height="18"> | **Documentation** | Clear instructions and examples |
-| <img src="https://api.iconify.design/lucide:users.svg?color=%23818cf8" width="18" height="18"> | **Team Collaboration** | Shared workflows for teams |
+| <img src="https://api.iconify.design/lucide:rocket.svg?color=%23f59e0b" width="18" height="18"> | **Performance First** | Cache hits make repeat builds 10x faster; `--affected` keeps CI lean |
+| <img src="https://api.iconify.design/lucide:check-circle.svg?color=%2310b981" width="18" height="18"> | **Quality Gates** | A single `moon run verify` runs the entire quality chain end to end |
+| <img src="https://api.iconify.design/lucide:repeat.svg?color=%236366f1" width="18" height="18"> | **Consistency** | Same scripts, same task names, same options across every workspace |
+| <img src="https://api.iconify.design/lucide:sliders.svg?color=%238b5cf6" width="18" height="18"> | **Flexibility** | A workspace can extend the shared task graph in its own `moon.yml` |
+| <img src="https://api.iconify.design/lucide:book-open.svg?color=%23ec4899" width="18" height="18"> | **Documentation** | Each workspace ships its own README with real commands and examples |
+| <img src="https://api.iconify.design/lucide:users.svg?color=%23818cf8" width="18" height="18"> | **Team Collaboration** | Hooks enforce the same standards on every contributor's machine |
 
 </details>
 
 <details>
-<summary>FAQs</summary>
+<summary><strong>FAQs</strong></summary>
 
 | Question | Answer |
 |----------|--------|
-| What is Moonrepo? | A task orchestration tool for monorepos with caching and dependency management |
-| How do I add a new template? | Create a new directory in `templates/` with a `moon.yml` configuration |
-| Can I use different Node versions? | Yes, configure in `.moon/toolchains.yml` per project |
-| How does caching work? | Moonrepo hashes inputs and caches outputs for deterministic tasks |
-| What if a task fails? | Check the error output and run with `--verbose` flag for details |
+| What is Moonrepo? | A task orchestrator that runs and caches tasks across a polyglot monorepo |
+| Where are the templates? | In `templates/<name>/`; each one is its own workspace with its own `package.json` |
+| How do I add a new template? | Drop a directory under `templates/` with a `package.json` exposing the shared task names |
+| Can I use a template outside this repo? | Yes, use the CLI: `bunx @templates/template-cli use <name>` copies it into any directory |
+| How does caching work? | Moonrepo hashes declared inputs and skips tasks whose inputs and outputs are unchanged |
+| What if a task fails? | Re-run with `moon run <task> --verbose` to see the underlying command output |
 
 </details>
 
 <details>
-<summary>Best Practices</summary>
+<summary><strong>Best Practices</strong></summary>
 
-**For Users:**
+**For Users**
 
-- Always run `moon check` before committing to ensure configuration is valid
-- Use `--affected` flag to run tasks only on changed projects
-- Keep dependencies updated with `bun install`
-- Review git hook output before pushing
-- Use the template that best matches your use case
-- Read the template-specific README for detailed instructions
+- Always run `moon check` after editing `.moon/*.yml` to validate workspace configuration
+- Use `moon run build --affected` to rebuild only the workspaces you touched
+- Keep `bun.lock` committed so the whole team resolves the same dependency graph
+- Use the CLI's `use <name>` rather than copying template folders by hand
+- Read the template-specific README before customising a workspace
 
-**For Developers:**
+**For Maintainers**
 
-- Follow the task dependency chain: format → lint → typecheck → test → build
-- Use persistent tasks for dev servers (dev, watch)
-- Configure cache appropriately for each task type
-- Keep moon.yml configurations consistent across projects
-- Test tasks locally before pushing
-- Document custom tasks in project README
+- Follow the task chain order: `format` → `lint` → `typecheck` → `test` → `build`
+- Mark long-running dev servers with `persistent: true` in the task definition
+- Mark pure CPU tasks with `cache: true` so the cache does its job
+- Keep `moon.yml` per project small — extend the shared graph, do not redefine it
 
 </details>
 
@@ -94,7 +96,7 @@ A collection of production-ready project templates following modern development 
 
 ## Quick Start
 
-Get started with the templates collection in minutes:
+Get the monorepo and CLI ready in five steps:
 
 1. **Clone the repository**
    ```bash
@@ -102,231 +104,220 @@ Get started with the templates collection in minutes:
    cd templates
    ```
 
-2. **Install dependencies**
+2. **Install dependencies for every workspace**
    ```bash
    bun install
    ```
 
-3. **Setup git hooks**
+3. **Install the Git hooks**
    ```bash
    bun run prepare
    ```
 
-4. **Verify installation**
+4. **Verify the workspace is healthy**
    ```bash
    moon check
    ```
 
-5. **Run your first task**
+5. **Run a task across the whole monorepo**
    ```bash
-   moon run :prepare
+   moon run :typecheck
    ```
 
 ---
 
 ## Usage
 
-### Moonrepo CLI
+### CLI
 
-Run tasks across the entire workspace or specific projects:
+The `templates` command comes from `apps/template-cli`. It runs against the bundled templates in `templates/` plus any templates you have registered into your local registry (`~/.templates` by default, override with `TEMPLATES_REGISTRY_DIR`).
 
 ```bash
-# Run task for all projects
-moon run build
+# Show every template, bundled and user-registered
+bunx @templates/template-cli list
 
-# Run task for specific project
+# Show the contents and metadata of one template
+bunx @templates/template-cli view <name>
+
+# Copy a template into a new project directory
+bunx @templates/template-cli use <name> -o ./my-app
+
+# Register a local directory as a user template
+bunx @templates/template-cli add ./path/to/template --name my-template
+
+# Remove a user template
+bunx @templates/template-cli delete my-template
+```
+
+### Moonrepo CLI
+
+Run any shared task across one project, many projects, or every project:
+
+```bash
+# Type-check every workspace
+moon run :typecheck
+
+# Build one workspace
 moon run templates/bun-lib:build
 
-# Run task for affected projects only
-moon run build --affected
+# Test only the workspaces affected by your branch
+moon run test --affected
 
-# Run task with verbose output
-moon run build --verbose
+# Inspect the full task graph
+moon run :build --dry-run
 
-# Check workspace configuration
+# Validate the workspace configuration
 moon check
 
-# Run CI pipeline
+# Run the CI pipeline end to end
 moon ci
 ```
 
-### Available Tasks
+### Git Integration
 
-All projects share these common tasks defined in `.moon/tasks/all.yml`:
-
-```bash
-# Install dependencies
-moon run prepare
-
-# Format code
-moon run format
-
-# Lint code
-moon run lint
-
-# Type check code
-moon run typecheck
-
-# Run tests
-moon run test
-
-# Build projects
-moon run build
-
-# Full verification (lint + typecheck + test)
-moon run verify
-
-# Start development server
-moon run dev
-
-# Watch for changes
-moon run watch
-```
-
-### Template Installation
-
-Install individual templates for new projects:
+Hooks are installed by `bun run prepare` and declared in `.moon/workspace.yml`. They run on every commit and push, scoped to the projects you have changed:
 
 ```bash
-# Install a template
-bun add @wrikka/bun-lib
+# Inspect installed hooks
+cat .git/hooks/pre-commit
+cat .git/hooks/pre-push
 
-# Install specific version
-bun add @wrikka/next@latest
+# Trigger the pre-commit hook manually
+moon run :lint :format --affected --status=staged
 
-# Install multiple templates
-bun add @wrikka/nuxt @wrikka/vite-react
-```
-
-### Workspace Management
-
-Manage workspaces and projects:
-
-```bash
-# List all projects
-moon project list
-
-# Show project details
-moon project info templates/bun-lib
-
-# Sync VCS hooks
-moon sync
+# Trigger the pre-push hook manually
+moon run :typecheck :test --affected
 ```
 
 ---
 
 ## Reference
 
-### Templates
+### Workspaces
 
-| Template | Description | Used In |
-|----------|-------------|---------|
-| bun-lib | Bun library template with benchmarks and examples | Library projects |
-| moonrepo | Moonrepo monorepo template with workspace configuration | Monorepo projects |
-| next | Next.js application with App Router and TypeScript | Web applications |
-| node-lib | Node.js library template with TypeScript | Library projects |
-| nuxt | Nuxt 3 application with server-side rendering | Web applications |
-| rust-clean | Rust Clean Architecture template with Vertical Slice Architecture | Rust applications |
-| rust-layered | Rust Layered Architecture template for medium-scale systems | Rust applications |
-| slidev | Slidev presentation template with developer-friendly features | Presentations |
-| tauri-nuxt | Tauri desktop application with Nuxt frontend | Desktop applications |
-| turborepo | Turborepo monorepo template (legacy) | Legacy monorepo projects |
-| tutorial | Tutorial template for learning purposes | Educational projects |
-| vite-react | Vite + React application with TypeScript | Web applications |
-| vitepress | VitePress documentation site with UnoCSS | Documentation sites |
-| vscode-vue | VS Code extension with Vue 3 | VS Code extensions |
-| web-extension-wxt-nuxt | Web extension with WXT and Nuxt | Browser extensions |
+| Workspace | Path | Type | Used For |
+|-----------|------|------|----------|
+| `template-cli` | `apps/template-cli` | Bun CLI | Scaffold, list, and manage templates |
+| `bun-lib` | `templates/bun-lib` | Bun library | Publishable TypeScript packages with Effect + Zod |
+| `node-lib` | `templates/node-lib` | Node library | Engines-pinned Node 18+ libraries |
+| `next` | `templates/next` | Next.js 15 app | React 19 web apps with App Router and Turbopack |
+| `nuxt` | `templates/nuxt` | Nuxt 4 app | Vue 3 full-stack apps with UnoCSS and Pinia |
+| `vite-react` | `templates/vite-react` | Vite + React app | Hybrid SSR/SSG via AnalogJS Nitro |
+| `vitepress` | `templates/vitepress` | VitePress site | Documentation with Clerk auth and Monaco editor |
+| `slidev` | `templates/slidev` | Slidev deck | Markdown-based presentations |
+| `tutorial` | `templates/tutorial` | TutorialKit site | Interactive lessons with code editor and terminal |
+| `tauri-nuxt` | `templates/tauri-nuxt` | Tauri desktop app | Cross-platform desktop with Rust backend |
+| `web-extension-wxt-nuxt` | `templates/web-extension-wxt-nuxt` | WXT extension | Cross-browser extensions with Vue 3 |
+| `vscode-vue` | `templates/vscode-vue` | VS Code extension | Reactive VS Code extensions with Tsdown |
+| `moonrepo` | `templates/moonrepo` | Moonrepo monorepo | Microservices with shared packages |
+| `turborepo` | `templates/turborepo` | Turborepo monorepo | Multi-app monorepo with shared `packages/` |
+| `rust-clean` | `templates/rust-clean` | Rust library | Clean Architecture with Vertical Slice |
+| `rust-layered` | `templates/rust-layered` | Rust library | Layered Architecture for medium-scale systems |
+
+### Shared Tasks
+
+Defined in `.moon/tasks/all.yml` and reused by every workspace:
+
+| Task | Purpose | Depends On | Cacheable |
+|------|---------|------------|-----------|
+| `prepare` | Install dependencies (`bun install`) | — | no |
+| `format` | Format the source tree | — | yes |
+| `lint` | Lint the source tree | `format` | no |
+| `typecheck` | Type-check the project | `lint` | yes |
+| `test` | Run unit tests | `lint` | yes |
+| `build` | Produce production artefacts | `lint` | yes |
+| `verify` | Run `typecheck` + `test` together | `test` | no |
+| `dev` | Start a long-running dev server | — | no (persistent) |
+| `watch` | Watch for file changes | — | no (persistent) |
 
 ### Configuration
 
 | File | Purpose | Location |
 |------|---------|----------|
-| `workspace.yml` | Workspace settings and VCS hooks | `.moon/workspace.yml` |
-| `toolchains.yml` | Toolchain versions (Node, Bun) | `.moon/toolchains.yml` |
+| `package.json` | Workspace list and root scripts | `./package.json` |
+| `workspace.yml` | Workspace projects and VCS hooks | `.moon/workspace.yml` |
+| `toolchains.yml` | Pinned Node and Bun versions | `.moon/toolchains.yml` |
 | `all.yml` | Shared task definitions | `.moon/tasks/all.yml` |
-| `moon.yml` | Project-specific configuration | Each project root |
+| `moon.yml` | Per-project task overrides | Each workspace root |
 
-### Options
-
-**Moonrepo CLI Options:**
+### Moonrepo Options
 
 | Option | Description | Example |
 |--------|-------------|---------|
-| `--affected` | Run tasks only on changed projects | `moon run build --affected` |
-| `--verbose` | Show detailed output | `moon run build --verbose` |
-| `--dry-run` | Show what would run without executing | `moon run build --dry-run` |
-| `--force` | Force task execution, ignore cache | `moon run build --force` |
-
-**Task Options:**
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `cache` | Enable/disable task caching | Varies by task |
-| `persistent` | Keep task running for dev servers | false |
-| `dependsOn` | Task dependencies | Defined in task config |
+| `--affected` | Run the task only on projects changed since the base branch | `moon run build --affected` |
+| `--verbose` | Print every shell command before it runs | `moon run test --verbose` |
+| `--dry-run` | Show what would run without executing anything | `moon run build --dry-run` |
+| `--force` | Ignore the task cache and re-run everything | `moon run build --force` |
+| `--status=staged` | Scope `--affected` to the files currently staged in Git | `moon run lint --affected --status=staged` |
 
 ### Commands
 
-**Workspace Commands:**
+**Workspace**
 
 ```bash
-# Check configuration
+# Validate the workspace configuration
 moon check
 
-# Sync VCS hooks
+# Install Git hooks from the workspace config
 moon sync
 
-# Run CI pipeline
+# Run the CI pipeline
 moon ci
 
-# List projects
+# List every discovered project
 moon project list
+
+# Show one project's metadata
+moon project info templates/bun-lib
 ```
 
-**Task Commands:**
+**Tasks**
 
 ```bash
-# Run specific task
-moon run <task>
+# Run a task on every project
+moon run :build
 
-# Run task for specific project
-moon run <project>:<task>
+# Run a task on one project
+moon run templates/next:dev
 
-# Run multiple tasks
+# Run several tasks in sequence
 moon run :format :lint
 ```
 
-**Development Commands:**
+**Development**
 
 ```bash
-# Start development server
+# Start a dev server (workspace-dependent)
 moon run dev
 
-# Watch for changes
+# Watch for file changes
 moon run watch
 
-# Build for production
+# Build production artefacts
 moon run build
 ```
+
+### Environment Variables
+
+| Variable | Default | Used By |
+|----------|---------|---------|
+| `TEMPLATES_REGISTRY_DIR` | `~/.templates` | `template-cli` user template directory |
+| `TEMPLATES_HOME` | `$HOME/.templates` | Fallback when `TEMPLATES_REGISTRY_DIR` is unset |
+| `NODE_ENV` | — | Workspace scripts that read it (e.g. Nuxt, Next) |
+| `BUN_INSTALL` | toolchain default | Resolved by Bun at install time |
 
 ---
 
 ## Notes
 
-[!TIP]
-Use `--affected` flag to run tasks only on changed projects for faster development cycles.
+> [!TIP]
+> Use `moon run build --affected` for everyday work — cache hits make repeat builds almost instant.
 
-[!IMPORTANT]
-Always run `moon check` after modifying configuration files to ensure validity.
+> [!IMPORTANT]
+> Run `moon check` after editing anything under `.moon/`. It validates the workspace config before you commit a broken `moon.yml`.
 
-[!WARNING]
-Never commit `.moon/cache/` directory as it contains build artifacts and should be gitignored.
+> [!WARNING]
+> Never commit the contents of `.moon/cache/`. It is reproducible build state and is already covered by `.gitignore`.
 
-[!CAUTION]
-Be careful when using `--force` flag as it bypasses cache and may slow down builds.
-
----
-
-## History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=wrikka/templates&type=Date)](https://star-history.com/#wrikka/templates&Date)
+> [!CAUTION]
+> Be careful with `moon run <task> --force` — it bypasses the cache and will re-run every task in the chain, which can be slow on a cold cache.

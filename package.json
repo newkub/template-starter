@@ -5,6 +5,7 @@
 	"type": "module",
 	"globalConcurrency": 32,
 	"workspaces": [
+		"apps/*",
 		"templates/*"
 	],
 	"scripts": {

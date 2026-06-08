@@ -1,248 +1,189 @@
 # Moonrepo Microservices Monorepo
 
-A modern microservices template built with Bun, Moonrepo, and TypeScript. This monorepo provides a scalable architecture for building distributed systems with best practices for development, testing, and deployment.
+**A microservices monorepo with Bun, Moonrepo, Hono, GraphQL Yoga, and shared packages**
 
-## Introduction
+A starting point for a small service-oriented system. It comes with three Hono services (an API gateway and two domain services), a shared `types` package, a `database` and a `utils` package, plus Docker Compose and a Railpack config for image builds.
 
-This template is designed to help developers quickly set up a microservices architecture with a focus on developer experience, type safety, and modern tooling. It includes three core services (API Gateway, User Service, Order Service) and shared packages for common functionality. The project leverages Moonrepo for monorepo management, Bun for high-performance runtime, and Railpack for automated Docker image generation.
+[![Bun](https://img.shields.io/badge/Bun-1.3.13+-fbf0df?logo=bun)](https://bun.sh)
+[![Moonrepo](https://img.shields.io/badge/Moonrepo-1.41.7+-f5f5f5?logo=moonrepo)](https://moonrepo.dev)
+[![Hono](https://img.shields.io/badge/Hono-4.12+-ff6e00?logo=hono)](https://hono.dev)
+
+[Quick Start](#quick-start) · [Usage](#usage) · [Reference](#reference) · [Notes](#notes)
+
+---
 
 ## Features
 
-- 🚀 **High Performance**: Built with Bun for lightning-fast JavaScript execution
-- 🏗️ **Monorepo Management**: Moonrepo for efficient workspace and task management
-- 📦 **Type Safety**: Full TypeScript support across all services and packages
-- 🐳 **Docker Support**: Automated Dockerfile generation with Railpack
-- 🔧 **Modern Tooling**: Oxlint for linting, Dprint for formatting
-- 🔄 **Shared Packages**: Reusable types, utilities, and configuration
-- 🎯 **Service Isolation**: Each service is independently deployable
-- ⚡ **Hot Reload**: Fast development with instant feedback
-- 🛡️ **Best Practices**: Follows industry standards for microservices
+| Icon | Feature | Description | Benefit | Usage |
+|------|---------|-------------|---------|-------|
+| <img src="https://api.iconify.design/lucide:zap.svg?color=%23fbf0df" width="18" height="18"> | **Bun Runtime** | High-performance JavaScript runtime | Fast cold starts and low overhead | `bun run dev` |
+| <img src="https://api.iconify.design/lucide:layers.svg?color=%23f5f5f5" width="18" height="18"> | **Moonrepo** | Task orchestration and caching | Run tasks across every project with one command | `moon run` |
+| <img src="https://api.iconify.design/lucide:server.svg?color=%23ff6e00" width="18" height="18"> | **Hono Services** | Lightweight HTTP framework for the API and each service | Tiny, fast, type-safe handlers | `import { Hono } from "hono"` |
+| <img src="https://api.iconify.design/lucide:database.svg?color=%236366f1" width="18" height="18"> | **GraphQL Yoga** | Schema and resolvers in the API gateway | One endpoint, typed queries | `import { createYoga } from "graphql-yoga"` |
+| <img src="https://api.iconify.design/lucide:box.svg?color=%232499ec" width="18" height="18"> | **Docker + Railpack** | Compose stack and per-service image build config | Reproducible local and remote deploys | `moon run :build:container` |
+| <img src="https://api.iconify.design/lucide:shield-check.svg?color=%2310b981" width="18" height="18"> | **Oxlint + TSGO** | Fast linting and type checking | Catch issues in seconds, not minutes | `bun run typecheck` |
 
-## Goal
+---
 
-- 🎯 Provide a production-ready microservices template
-- 🎯 Enable rapid development and deployment of distributed systems
-- 🎯 Maintain code quality and consistency across services
-- 🎯 Simplify monorepo management and CI/CD integration
-- 🎯 Support both Docker and Podman for containerization
+## Key Concepts
 
-## Design Principles
-
-- 🏗️ **Modularity**: Each service is self-contained and independently deployable
-- 🔒 **Type Safety**: Leverage TypeScript for compile-time error checking
-- 📊 **Scalability**: Architecture designed to handle growing workloads
-- 🔄 **Maintainability**: Clean code structure and shared utilities
-- ⚡ **Performance**: Optimize for speed and resource efficiency
-- 🛡️ **Security**: Follow security best practices for authentication and data handling
-- 🧪 **Testability**: Structure code for easy testing and validation
-
-## Installation
-
-### Prerequisites
-
-- Node.js 18+ or Bun 1.3+
-- Docker or Podman (for containerization)
-- Git
-
-### Clone and Install
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd microservices
-
-# Install dependencies
-bun install
-```
-
-### Alternative Installation Methods
+> [!NOTE]
+> How the workspace is laid out and how tasks flow through it
 
 <details>
-<summary>Using npm</summary>
+<summary><strong>Key Concepts</strong></summary>
 
-```bash
-npm install
-```
+| Icon | Concept | Benefit |
+|------|---------|---------|
+| <img src="https://api.iconify.design/lucide:cpu.svg?color=%236366f1" width="18" height="18"> | **Microservices** | Each service has its own `package.json`, its own `moon.yml`, and its own container |
+| <img src="https://api.iconify.design/lucide:shield.svg?color=%238b5cf6" width="18" height="18"> | **Type Safety** | Strict TypeScript across services and shared packages |
+| <img src="https://api.iconify.design/lucide:layout.svg?color=%2310b981" width="18" height="18"> | **Shared Packages** | `@moonrepo/types`, `@moonrepo/database`, `@moonrepo/utils`, `@moonrepo/config` |
+| <img src="https://api.iconify.design/lucide:git-branch.svg?color=%23f59e0b" width="18" height="18"> | **Service Isolation** | Every service is independently buildable, testable, and deployable |
+
 </details>
 
 <details>
-<summary>Using yarn</summary>
+<summary><strong>Principles</strong></summary>
 
-```bash
-yarn install
-```
+| Icon | Principle | User Impact |
+|------|-----------|-------------|
+| <img src="https://api.iconify.design/lucide:rocket.svg?color=%23f59e0b" width="18" height="18"> | **Performance First** | Bun runtime plus Moonrepo's input hashing keep cold and warm builds fast |
+| <img src="https://api.iconify.design/lucide:check-circle.svg?color=%2310b981" width="18" height="18"> | **Type Safety** | Strict TS and Zod validation at every service boundary |
+| <img src="https://api.iconify.design/lucide:repeat.svg?color=%236366f1" width="18" height="18"> | **Consistency** | Same scripts and options across every service and package |
+| <img src="https://api.iconify.design/lucide:book-open.svg?color=%23ec4899" width="18" height="18"> | **Documentation** | Each project has its own README with concrete commands |
+
 </details>
 
 <details>
-<summary>Using pnpm</summary>
+<summary><strong>FAQs</strong></summary>
 
-```bash
-pnpm install
-```
+| Question | Answer |
+|----------|--------|
+| What is Moonrepo? | A task orchestrator that runs and caches tasks across a polyglot monorepo |
+| How do I add a new service? | Drop a directory under `apps/`, give it a `package.json` and a `moon.yml`, and add it to `moon.yml` at the workspace root |
+| How do services talk to each other? | Each service reads the upstream URL from the `*.env` file and uses Hono's `fetch`-style client to call it |
+| How do I build container images? | Each service ships a `railpack.json`; run `moon run :build:container` to build them all |
+
 </details>
+
+<details>
+<summary><strong>Best Practices</strong></summary>
+
+**For Users**
+
+- Run `bun run verify` before committing; it runs lint, typecheck, and tests in order
+- Use the shared `@moonrepo/types` package for any type that crosses a service boundary
+- Use the shared `@moonrepo/database` package for connections and migrations
+- Use `workspace:*` for internal dependencies, never a published version
+
+**For Maintainers**
+
+- Stay on the shared task chain: do not introduce a second linter or formatter
+- Use `ast-grep scan` to keep patterns consistent across services
+- Keep each service small and focused on one bounded context
+- Define service dependencies in `moon.yml` so Moonrepo can order tasks
+
+</details>
+
+---
+
+## Quick Start
+
+1. **Scaffold the monorepo into a fresh directory**
+   ```bash
+   templates use moonrepo -o ./my-monorepo
+   cd my-monorepo
+   ```
+
+2. **Install dependencies**
+   ```bash
+   bun install
+   ```
+
+3. **Install the Git hooks**
+   ```bash
+   bun run prepare
+   ```
+
+4. **Start every service in dev mode**
+   ```bash
+   bun run dev
+   ```
+
+5. **Build container images for every service**
+   ```bash
+   moon run :build:container
+   ```
+
+---
 
 ## Usage
 
-### Development
+### Moonrepo Tasks
+
+Moonrepo runs the shared task chain across every workspace in parallel where it can:
 
 ```bash
-# Run all services in development mode
-bun run dev
+# Run the same task in every project
+moon run :build
 
-# Run specific service
+# Run a task in one project
 moon run api-gateway:dev
-moon run user-service:dev
-moon run order-service:dev
-```
 
-### Build
+# Run every task affected by the current branch
+moon run :test --affected
 
-```bash
-# Build all services
-bun run build
+# Validate the workspace configuration
+moon check
 
-# Build specific service
-moon run api-gateway:build
-```
-
-### Testing
-
-```bash
-# Run all tests
-bun run test
-
-# Run tests for specific service
-moon run api-gateway:test
-```
-
-### Linting and Formatting
-
-```bash
-# Lint all code
-bun run lint
-
-# Format all code
-bun run format
-
-# Lint specific service
-moon run api-gateway:lint
+# Run the CI pipeline
+moon ci
 ```
 
 ### Docker
 
+A `docker-compose.yml` orchestrates the three services and the shared infrastructure:
+
 ```bash
-# Build all Docker images
+# Build every service image
 moon run :build:container
 
-# Build specific service image
+# Build one service image
 moon run api-gateway:build:container
 
-# Run all services with Docker Compose
-docker-compose up -d
+# Start the full stack
+docker compose up -d
 
-# Run specific service
-docker-compose up api-gateway
+# Follow logs from every service
+docker compose logs -f
+
+# Stop the stack
+docker compose down
 ```
 
-## Examples
+### API Gateway
 
-### Starting the Development Environment
-
-```bash
-# Install dependencies
-bun install
-
-# Start all services
-bun run dev
-
-# Services will be available at:
-# - API Gateway: http://localhost:3000
-# - User Service: http://localhost:3001
-# - Order Service: http://localhost:3002
-```
-
-### Building and Running with Docker
+The API gateway exposes a health endpoint and forwards requests to the user and order services:
 
 ```bash
-# Build Docker images
-moon run :build:container
-
-# Start all services
-docker-compose up -d
-
-# Check service status
-docker-compose ps
-
-# View logs
-docker-compose logs -f
-
-# Stop services
-docker-compose down
-```
-
-### API Gateway Usage
-
-```bash
-# Forward to user service
-curl http://localhost:3000/api/users
-
-# Forward to order service
-curl http://localhost:3000/api/orders
-
 # Health check
 curl http://localhost:3000/health
+
+# Forward to the user service
+curl http://localhost:3000/api/users
+
+# Forward to the order service
+curl http://localhost:3000/api/orders
+
+# Run a GraphQL query against the gateway
+curl -X POST http://localhost:3000/graphql \
+	-H "Content-Type: application/json" \
+	-d '{"query": "{ users { id email } }"}'
 ```
 
-### User Service Usage
+### Environment Variables
 
-```bash
-# Register user
-curl -X POST http://localhost:3001/api/users/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"user@example.com","password":"securepassword","name":"John Doe"}'
-
-# Login
-curl -X POST http://localhost:3001/api/users/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"user@example.com","password":"securepassword"}'
-```
-
-### Order Service Usage
-
-```bash
-# Create order
-curl -X POST http://localhost:3001/api/orders \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
-  -d '{"userId":"user-123","items":[{"productId":"prod-456","quantity":2,"price":29.99}]}'
-
-# Get order
-curl http://localhost:3001/api/orders/:id \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
-```
-
-## Project Structure
-
-```
-microservices/
-├── apps/
-│   ├── api-gateway/       # API Gateway (Port 3000)
-│   ├── user-service/      # User Service (Port 3001)
-│   └── order-service/     # Order Service (Port 3002)
-├── packages/
-│   ├── types/             # Shared TypeScript types
-│   ├── database/          # Database utilities
-│   ├── utils/             # Shared utilities
-│   └── config/            # Configuration management
-├── .moon/                 # Moonrepo configuration
-├── .oxlintrc.json         # Oxlint configuration
-├── dprint.json            # Dprint configuration
-└── docker-compose.yml     # Docker compose configuration
-```
-
-## Environment Variables
-
-Create a `.env` file at the root:
+Each service reads its own `.env` file. A starter file at the root lists the variables you need:
 
 ```env
 NODE_ENV=development
@@ -256,36 +197,82 @@ JWT_SECRET=dev-secret
 JWT_EXPIRES_IN=1d
 ```
 
-## Tech Stack
+---
 
-- **Runtime**: Bun
-- **Monorepo**: Moonrepo
-- **Web Framework**: Hono
-- **Language**: TypeScript
-- **Package Manager**: Bun
-- **Linting**: Oxlint
-- **Formatting**: Dprint
-- **Containerization**: Docker / Podman
-- **Build Tool**: Railpack
+## Reference
 
-## Shared Packages
+### Project Structure
 
-- `@moonrepo/types` - Shared TypeScript types and interfaces
-- `@moonrepo/config` - Configuration management utilities
-- `@moonrepo/database` - Database connection and utilities
-- `@moonrepo/utils` - Shared utility functions
+| Path | Purpose |
+|------|---------|
+| `apps/api-gateway/` | API gateway: routing, GraphQL Yoga schema, health checks |
+| `apps/user-service/` | Hono service that owns the user domain |
+| `apps/order-service/` | Hono service that owns the order domain |
+| `packages/types/` | Shared TypeScript types and Zod schemas |
+| `packages/database/` | Shared database connection helpers |
+| `packages/utils/` | Shared utility functions |
+| `packages/config/` | Shared configuration helpers |
+| `docker-compose.yml` | Local orchestration of every service |
+| `moon.yml` | Workspace-level task definitions |
+| `.moon/workspace.yml` | Workspace and toolchain configuration |
+| `dprint.json` | dprint configuration |
+| `.oxlintrc.json` | Oxlint configuration |
 
-## Best Practices
+### Shared Tasks
 
-1. 📦 Use shared packages (types, utils, config) to reduce code duplication
-2. 🔗 Define service dependencies clearly in `moon.yml`
-3. 🏷️ Use workspace protocol (`workspace:*`) for internal dependencies
-4. 📖 Follow `/follow-moonrepo` for additional best practices
-5. 🔍 Use oxlint for linting and dprint for formatting
-6. 🐳 Use Docker for deployment and development environment
-7. 🧪 Write tests for all services and shared packages
-8. 📝 Keep documentation up to date
+| Task | Command | Purpose |
+|------|---------|---------|
+| `dev` | `bun run src/index.ts` | Run the entry source file through Bun |
+| `build` | `bun build` | Produce a production bundle |
+| `start` | `bun dist/index.js` | Run the production bundle |
+| `lint` | `biome check` | Lint the source tree |
+| `format` | `biome check --write` | Auto-format every file |
+| `typecheck` | `tsgo --noEmit` | Type-check the project |
+| `test` | `vitest run` | Run the Vitest suite |
+| `verify` | `lint && typecheck && test` | Full quality gate |
+| `scan` | `ast-grep scan` | Scan for code patterns |
+| `ci` | `verify && build` | Full CI pipeline |
+| `clean` | `rimraf dist` | Remove build artefacts |
 
-## License
+### Configuration
 
-MIT License
+| File | Purpose | Location |
+|------|---------|----------|
+| `package.json` | Workspace list and root scripts | `./package.json` |
+| `moon.yml` | Workspace and project task overrides | `./moon.yml` and per-project |
+| `dprint.json` | dprint formatting rules | Root |
+| `.oxlintrc.json` | Oxlint rules | Root |
+| `docker-compose.yml` | Local stack | Root |
+| `railpack.json` | Per-service image build config | Each service in `apps/` |
+
+### Moonrepo Options
+
+| Option | Description | Example |
+|--------|-------------|---------|
+| `--affected` | Run tasks only on projects changed since the base branch | `moon run :build --affected` |
+| `--verbose` | Print every shell command before it runs | `moon run :test --verbose` |
+| `--dry-run` | Show what would run without executing anything | `moon run :build --dry-run` |
+| `--force` | Ignore the task cache and re-run everything | `moon run :build --force` |
+
+### Docker Options
+
+| Option | Description | Example |
+|--------|-------------|---------|
+| `--build` | Build images before starting the stack | `docker compose up --build` |
+| `-d` | Run in the background | `docker compose up -d` |
+
+---
+
+## Notes
+
+> [!TIP]
+> Use `moon run <task> --affected` for day-to-day work — cache hits make repeat runs almost instant.
+
+> [!IMPORTANT]
+> Run `moon check` after editing any `.moon/*.yml`. It validates the workspace config before you commit a broken setup.
+
+> [!WARNING]
+> Never commit `node_modules`, `dist/`, or anything inside `.moon/cache/`. They are reproducible from `package.json` and `bun install`.
+
+> [!CAUTION]
+> Be careful with service-to-service URLs in `.env` — using the wrong host will make a service silently fall back to defaults.
