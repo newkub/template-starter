@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "watch": "turbo watch verify --ui=tui",
-    "prepare": "wtemplates use",
     "dev": "bun run src/index.ts",
     "format": "biome check --write",
     "scan": "ast-grep scan",
