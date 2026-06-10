@@ -40,12 +40,12 @@
     "ci": "bun run verify && bun run build"
   },
   "dependencies": {
-    "reactive-vscode": "^0.3.3"
+    "reactive-vscode": "^1.0.2"
   },
   "devDependencies": {
     "@types/vscode": "^1.120.0",
-    "@vscode/vsce": "^3.9.1",
-    "oxlint-tsgolint": "^0.10.1",
-    "typescript": "^5.9.3"
+    "@vscode/vsce": "^3.9.2",
+    "oxlint-tsgolint": "^0.23.0",
+    "typescript": "^6.0.3"
   }
 }

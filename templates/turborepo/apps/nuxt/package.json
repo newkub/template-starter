@@ -19,22 +19,22 @@
     "ci": "bun run verify && bun run build"
   },
   "dependencies": {
-    "@nuxt/icon": "^2.2.2",
-    "@nuxtjs/color-mode": "^4.0.0",
+    "@nuxt/icon": "^2.2.3",
+    "@nuxtjs/color-mode": "^4.0.1",
     "@pinia/nuxt": "^0.11.3",
-    "@scalar/nuxt": "^0.5.90",
+    "@scalar/nuxt": "^0.6.45",
     "@unocss/nuxt": "^66.7.0",
     "@vue-macros/nuxt": "^3.1.2",
     "@vueuse/nuxt": "^14.3.0",
-    "nuxt": "^4.4.6",
+    "nuxt": "^4.4.8",
     "nuxt-mcp-dev": "^0.3.2",
     "pinia": "^3.0.4",
     "vue": "^3.5.35"
   },
   "devDependencies": {
-    "oxlint-tsgolint": "^0.10.1",
-    "vite-plugin-checker": "^0.12.0",
-    "vue-tsc": "^3.3.2",
-    "wrangler": "^4.95.0"
+    "oxlint-tsgolint": "^0.23.0",
+    "vite-plugin-checker": "^0.14.1",
+    "vue-tsc": "^3.3.4",
+    "wrangler": "^4.99.0"
   }
 }

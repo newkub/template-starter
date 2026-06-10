@@ -5,7 +5,6 @@
 	"type": "module",
 	"globalConcurrency": 32,
 	"workspaces": [
-		"apps/*",
 		"templates/*"
 	],
 	"scripts": {
@@ -17,6 +16,6 @@
 		"moon:ci": "moon ci"
 	},
 	"devDependencies": {
-		"@moonrepo/cli": "^2.2.6"
+		"@moonrepo/cli": "^2.3.2"
 	}
 }

@@ -23,13 +23,13 @@
     "ci": "bun run verify && bun run build"
   },
   "dependencies": {
-    "reactive-vscode": "^0.3.3"
+    "reactive-vscode": "^1.0.2"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.315",
+    "@types/chrome": "^0.1.43",
     "@types/firefox-webext-browser": "^143.0.0",
-    "oxlint-tsgolint": "^0.10.1",
-    "typescript": "^5.9.3",
+    "oxlint-tsgolint": "^0.23.0",
+    "typescript": "^6.0.3",
     "wxt": "^0.20.26"
   }
 }
