@@ -6,6 +6,7 @@
 		"customManagers:biomeVersions"
 	],
 	"schedule": ["every day"],
+	"docker": false,
 	"packageRules": [
 		{
 			"matchDepTypes": ["dependencies", "devDependencies"],
