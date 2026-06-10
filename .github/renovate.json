@@ -1,10 +1,5 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		"config:base",
-		"config:recommended",
-		"customManagers:biomeVersions"
-	],
 	"schedule": ["every day"],
 	"docker": false,
 	"platform": "github",
