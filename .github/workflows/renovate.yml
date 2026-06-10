@@ -35,12 +35,10 @@ jobs:
         run: bun install --ignore-scripts
 
       - name: Run Renovate
-        uses: renovatebot/github-action@v39.2.4
-        with:
-          configurationFile: .github/renovate.json
-          token: ${{ secrets.RENOVATE_TOKEN }}
+        run: bunx renovate
         env:
           LOG_LEVEL: info
           RENOVATE_PLATFORM: github
           RENOVATE_AUTODISCOVER: "true"
           RENOVATE_AUTODISCOVER_FILTER: "newkub/*"
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
