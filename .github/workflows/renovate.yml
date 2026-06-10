@@ -35,8 +35,7 @@ jobs:
         run: bun install --ignore-scripts
 
       - name: Run Renovate
-        run: bunx renovate
+        run: bunx renovate newkub/template-starter
         env:
           LOG_LEVEL: info
-          RENOVATE_PLATFORM: github
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}

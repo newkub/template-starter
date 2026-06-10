@@ -7,6 +7,7 @@
 	],
 	"schedule": ["every day"],
 	"docker": false,
+	"platform": "github",
 	"repositories": ["newkub/template-starter"],
 	"packageRules": [
 		{
