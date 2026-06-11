@@ -1,0 +1,23 @@
+{
+	"name": "web",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vinxi dev",
+		"build": "vinxi build",
+		"start": "vinxi start"
+	},
+	"dependencies": {
+		"solid-js": "^1.8.11",
+		"@solidjs/start": "^1.0.6",
+		"vinxi": "^0.4.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.5",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.12",
+		"unocss": "^0.58.3",
+		"@unocss/preset-uno": "^0.58.3",
+		"@unocss/preset-icons": "^0.58.3"
+	}
+}

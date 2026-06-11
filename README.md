@@ -130,23 +130,23 @@ Get the monorepo and CLI ready in five steps:
 
 ### CLI
 
-The `templates` command comes from `apps/template-cli`. It runs against the bundled templates in `templates/` plus any templates you have registered into your local registry (`~/.templates` by default, override with `TEMPLATES_REGISTRY_DIR`).
+The `templates` command comes from `apps/cli`. It runs against the bundled templates in `templates/` plus any templates you have registered into your local registry (`~/.templates` by default, override with `TEMPLATES_REGISTRY_DIR`).
 
 ```bash
 # Show every template, bundled and user-registered
-bunx @templates/template-cli list
+bunx @templates/cli list
 
 # Show the contents and metadata of one template
-bunx @templates/template-cli view <name>
+bunx @templates/cli view <name>
 
 # Copy a template into a new project directory
-bunx @templates/template-cli use <name> -o ./my-app
+bunx @templates/cli use <name> -o ./my-app
 
 # Register a local directory as a user template
-bunx @templates/template-cli add ./path/to/template --name my-template
+bunx @templates/cli add ./path/to/template --name my-template
 
 # Remove a user template
-bunx @templates/template-cli delete my-template
+bunx @templates/cli delete my-template
 ```
 
 ### Moonrepo CLI
@@ -197,7 +197,7 @@ moon run :typecheck :test --affected
 
 | Workspace | Path | Type | Used For |
 |-----------|------|------|----------|
-| `template-cli` | `apps/template-cli` | Bun CLI | Scaffold, list, and manage templates |
+| `cli` | `apps/cli` | Bun CLI | Scaffold, list, and manage templates |
 | `bun-lib` | `templates/bun-lib` | Bun library | Publishable TypeScript packages with Effect + Zod |
 | `node-lib` | `templates/node-lib` | Node library | Engines-pinned Node 18+ libraries |
 | `next` | `templates/next` | Next.js 15 app | React 19 web apps with App Router and Turbopack |

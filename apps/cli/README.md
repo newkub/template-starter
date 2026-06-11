@@ -2,7 +2,7 @@
 
 **A small, fast CLI to scaffold, inspect, and manage the templates in this monorepo**
 
-The `templates` command reads the bundled templates from `templates/` in this repo, layers on any templates you have registered in your local registry, and lets you copy any of them into a target directory. It is a workspace of its own (`apps/template-cli`) and ships as a single binary named `templates`.
+The `templates` command reads the bundled templates from `templates/` in this repo, layers on any templates you have registered in your local registry, and lets you copy any of them into a target directory. It is a workspace of its own (`apps/cli`) and ships as a single binary named `templates`.
 
 [![Bun](https://img.shields.io/badge/Bun-1.3.13+-fbf0df?logo=bun)](https://bun.sh)
 [![cac](https://img.shields.io/badge/cac-6.7.14-blue?logo=typescript)](https://github.com/cacjs/cac)
@@ -125,6 +125,19 @@ The `templates` command reads the bundled templates from `templates/` in this re
 The `templates` binary is the primary interface. Run it from anywhere once installed.
 
 ```bash
+# Initialize a new project with smart detection (NEW)
+templates init
+templates init my-app
+
+# Specify options explicitly
+templates init my-app --framework next --database postgres
+
+# Auto mode - no confirmation
+templates init my-app --auto
+
+# Dry run - see what would happen
+templates init my-app --dry-run
+
 # List every template, bundled and user
 templates list
 
@@ -170,7 +183,7 @@ import {
 	buildProgram,
 	getUserRegistryDir,
 	copyDirectory,
-} from "@templates/template-cli";
+} from "@templates/cli";
 
 // Use the service directly
 const service = new TemplateService(new TemplateRegistry("/custom/registry"));
@@ -192,7 +205,7 @@ import {
 	TemplateNotFoundError,
 	copyDirectory,
 	getBundledTemplatesDir,
-} from "@templates/template-cli";
+} from "@templates/cli";
 
 try {
 	await copyDirectory(getBundledTemplatesDir(), "./out");
@@ -227,6 +240,7 @@ try {
 
 | Command | Arguments | Description |
 |---------|-----------|-------------|
+| `init` | `[name]` | Initialize a new project with smart detection |
 | `list` | — | Print every available template, grouped by source |
 | `use` | `<name>` | Copy a template into the current or `--output` directory |
 | `view` | `<name>` | Print the template's metadata and a directory tree |
@@ -237,8 +251,18 @@ try {
 
 | Option | Commands | Description | Default |
 |--------|----------|-------------|---------|
-| `-o, --output <path>` | `use` | Destination directory for the copy | `process.cwd()` |
+| `-o, --output <path>` | `init`, `use` | Destination directory for the copy | `process.cwd()` |
 | `--overwrite` | `use` | Replace the destination if it already exists | `false` |
+| `-f, --framework <framework>` | `init` | Framework to use | detected |
+| `-d, --database <database>` | `init` | Database to use | detected |
+| `-a, --auth <auth>` | `init` | Authentication provider | detected |
+| `-D, --deployment <deployment>` | `init` | Deployment target | detected |
+| `--features <features>` | `init` | Features (comma-separated) | detected |
+| `--auto` | `init` | Auto mode - no confirmation | `false` |
+| `--interactive` | `init` | Force interactive mode | `false` |
+| `--smart` | `init` | Smart detection mode | `true` |
+| `--dry-run` | `init` | Show what would be done without doing it | `false` |
+| `--preset <preset>` | `init` | Use a preset configuration | — |
 | `--source <source>` | `list` | Show only `bundled`, `user`, or `all` templates | `all` |
 | `--depth <n>` | `view` | Maximum directory depth to display | `2` |
 | `--json` | `list`, `view` | Print machine-readable JSON instead of formatted text | `false` |
@@ -258,7 +282,7 @@ try {
 
 | File | Purpose |
 |------|---------|
-| `package.json` | Name (`@templates/template-cli`), `bin` entry, scripts, dependencies |
+| `package.json` | Name (`@templates/cli`), `bin` entry, scripts, dependencies |
 | `tsconfig.json` | Strict TypeScript with `bundler` module resolution, `bun` types, isolated declarations |
 | `bunup.config.ts` | Bundles `src/main.ts` (CLI) and `src/index.ts` (library) into `dist/`, generates `.d.ts` for the library entry |
 | `biome.json` | Lint and format rules (tab indent, double quotes, trailing commas) |

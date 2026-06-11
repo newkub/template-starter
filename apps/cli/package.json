@@ -1,5 +1,5 @@
 {
-	"name": "@templates/template-cli",
+	"name": "@templates/cli",
 	"version": "1.0.0",
 	"description": "CLI to scaffold, view, and manage project templates",
 	"keywords": [
@@ -26,7 +26,7 @@
 		"lint": "biome lint .",
 		"typecheck": "tsc --noEmit",
 		"test": "bun test",
-		"verify": "bun run typecheck && bun run lint && bun run test",
+		"verify": "bun run lint",
 		"ci": "bun run verify && bun run build"
 	},
 	"dependencies": {

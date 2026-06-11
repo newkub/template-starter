@@ -1,5 +1,8 @@
 export { TemplateService } from "./services/template.js";
 export { TemplateRegistry } from "./services/registry.js";
+export { DetectionService } from "./services/detection.js";
+export { ConfigService } from "./services/config.js";
+export { HistoryService } from "./services/history.js";
 export * from "./types/index.js";
 export * from "./utils/errors.js";
 export {
