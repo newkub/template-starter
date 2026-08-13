@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
+		"target": "ES2022",
 		"module": "ESNext",
 		"lib": [
 			"ESNext",
@@ -13,6 +13,7 @@
 		"resolveJsonModule": true,
 		"allowImportingTsExtensions": true,
 		"strict": true,
+		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"noEmit": true,
 		"baseUrl": ".",
@@ -23,13 +24,12 @@
 			"~/*": [
 				"./src/*"
 			]
-		},
-		"types": [
-			"vinxi/types/client"
-		]
+		}
 	},
 	"include": [
-		"src/**/*"
+		"src",
+		"uno.config.ts",
+		"vite.config.ts"
 	],
 	"exclude": [
 		"node_modules",

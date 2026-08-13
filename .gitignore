@@ -99,6 +99,13 @@ dist/
 vite.config.js.timestamp-*
 vite.config.mjs.timestamp-*
 
+# TanStack Start / Vinxi
+.output/
+.vinxi/
+.nitro/
+.data/
+src/routeTree.gen.ts
+
 # Slidev
 dist-slides/
 

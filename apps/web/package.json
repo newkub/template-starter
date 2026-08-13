@@ -1,23 +1,26 @@
 {
 	"name": "web",
 	"version": "0.0.0",
+	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vinxi dev",
-		"build": "vinxi build",
-		"start": "vinxi start"
+		"dev": "vite dev",
+		"build": "vite build",
+		"start": "vite preview",
+		"preview": "vite preview"
 	},
 	"dependencies": {
-		"solid-js": "^1.8.11",
-		"@solidjs/start": "^1.0.6",
-		"vinxi": "^0.4.0"
+		"@tanstack/solid-router": "^1.168.9",
+		"@tanstack/solid-start": "^1.166.23",
+		"solid-js": "^1.9.13"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.5",
+		"@unocss/preset-icons": "^66.7.0",
+		"@unocss/preset-uno": "^66.7.0",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.12",
-		"unocss": "^0.58.3",
-		"@unocss/preset-uno": "^0.58.3",
-		"@unocss/preset-icons": "^0.58.3"
+		"unocss": "^66.7.0",
+		"vite": "^8.0.0",
+		"vite-plugin-solid": "^2.11.6"
 	}
 }
