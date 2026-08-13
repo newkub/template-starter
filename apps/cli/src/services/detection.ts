@@ -177,7 +177,7 @@ export class DetectionService {
 					} else if (deps.nuxt) {
 						config.framework = "nuxt";
 						hasValue = true;
-					} else if (deps["@solidjs/start"]) {
+					} else if (deps["@solidjs/start"] || deps["@tanstack/solid-start"]) {
 						config.framework = "solidstart";
 						hasValue = true;
 					} else if (deps["@sveltejs/kit"]) {
